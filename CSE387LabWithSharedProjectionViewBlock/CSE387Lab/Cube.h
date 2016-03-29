@@ -1,8 +1,8 @@
 #pragma once
 
-#include "VisibleObject.h"
+#include "VisibleObjectOrderedRender.h"
 
-class Cube : public VisibleObject
+class Cube : public VisibleObjectOrderedRender
 {
 public:
 	
@@ -12,6 +12,5 @@ public:
 
 	void initialize();
 
-	void draw();
 };
 

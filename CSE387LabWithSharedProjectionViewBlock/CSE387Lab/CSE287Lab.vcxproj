@@ -89,6 +89,8 @@
     <ClInclude Include="SharedProjectionAndViewing.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="VisibleObject.h" />
+    <ClInclude Include="VisibleObjectIndexedRender.h" />
+    <ClInclude Include="VisibleObjectOrderedRender.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BasicIncludesAndDefines.cpp" />
@@ -100,6 +102,8 @@
     <ClCompile Include="SharedProjectionAndViewing.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="VisibleObject.cpp" />
+    <ClCompile Include="VisibleObjectIndexedRender.cpp" />
+    <ClCompile Include="VisibleObjectOrderedRender.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="fragmentShader.fs.glsl" />

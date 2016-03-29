@@ -45,6 +45,12 @@
     <ClInclude Include="SharedProjectionAndViewing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="VisibleObjectOrderedRender.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VisibleObjectIndexedRender.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Lab.cpp">
@@ -72,6 +78,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SharedProjectionAndViewing.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisibleObjectOrderedRender.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisibleObjectIndexedRender.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "VisibleObject.h"
+#include "VisibleObjectIndexedRender.h"
 
-class Sphere : 	public VisibleObject
+class Sphere : 	public VisibleObjectIndexedRender
 {
 
 public:
@@ -12,8 +12,6 @@ public:
 	~Sphere();
 
 	void initialize();
-
-	void draw();
 
 	void update(float deltaTime);
 

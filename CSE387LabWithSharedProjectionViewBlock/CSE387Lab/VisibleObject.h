@@ -44,5 +44,7 @@ protected:
 
 	GLuint modelLocation;
 
+	vector<VisibleObject> children;
+
 };
 

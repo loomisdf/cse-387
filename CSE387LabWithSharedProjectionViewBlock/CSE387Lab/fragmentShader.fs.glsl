@@ -22,10 +22,4 @@ void main()
 	//fragmentColor = texture2D(gSampler, TexCoord0.st);
 
 	fragmentColor = color0;
-
-
-
-
-
-
 }

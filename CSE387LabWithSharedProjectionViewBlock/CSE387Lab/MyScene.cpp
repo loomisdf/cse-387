@@ -55,16 +55,24 @@ void MyScene::initialize()
 	cube.initialize();
 	cube.material.setAmbientAndDiffuseMat(glm::vec4(0.1f, 0.1f, 1.0f, 1.0f));
 
+	children.push_back(cube);
+
 	sphere.setShader(shaderProgram);
 	sphere.initialize();
 	sphere.material.setAmbientAndDiffuseMat(glm::vec4(1.0f, 1.1f, 0.1f, 1.0f));
+
+	children.push_back(sphere);
 	
 	earth.setShader(shaderProgram);
 	earth.initialize();
 	earth.material.setAmbientAndDiffuseMat(glm::vec4(0.0f, 0.5f, 0.0f, 1.0f));
 
+	children.push_back(earth);
+
 	moon.setShader(shaderProgram);
 	moon.initialize();
+
+	children.push_back(moon);
 
 	checkOpenGLErrors("MyScene::initialize2");
 
@@ -233,13 +241,18 @@ void MyScene::resize(int windowWidth, int windowHeight)
 
 void MyScene::draw()
 {
-	cube.draw();
 
-	earth.draw();
+	for (int i = 0; i < children.size(); i++) {
+		children[i].draw();
+	}
 
-	sphere.draw();
+	//cube.draw();
 
-	moon.draw();
+	//earth.draw();
+
+	//sphere.draw();
+
+	//moon.draw();
 
 	checkOpenGLErrors("MyScene::draw");
 }
