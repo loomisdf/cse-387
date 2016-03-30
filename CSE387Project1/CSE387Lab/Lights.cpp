@@ -1,5 +1,22 @@
 #include "Lights.h"
 
+GLint Lights::blockIndex;
+GLint Lights::blockSize;
+GLint Lights::bindingPoint = 2;
+
+GLuint Lights::lightBuffer;
+bool Lights::bufferMapped = false;
+
+GLint Lights::ambientColorLoc[3];
+GLint Lights::diffuseColorLoc[3];
+GLint Lights::specularColorLoc[3];
+GLint Lights::positionOrDirectionLoc[3];
+GLint Lights::spotDirectionLoc[3];
+GLint Lights::isSpotLoc[3];
+GLint Lights::spotCutoffCosLoc[3];
+GLint Lights::spotExponentLoc[3];
+GLint Lights::enabledLoc[3];
+
 Lights::Lights()
 {
 	// Set light defaults
@@ -42,7 +59,12 @@ Lights::~Lights()
 void Lights::initialize() {
 	setUniformIndex();
 	setOffsets();
-	setBuffer();
+	if (!bufferMapped) {
+		bufferMapped = true;
+		setBuffer();
+	}
+
+	
 }
 
 void Lights::setUniformIndex() {
@@ -116,10 +138,10 @@ void Lights::setOffsets() {
 
 	glGetActiveUniformsiv(shaderProgram, 9, uniformIndeces, GL_UNIFORM_OFFSET, uniformOffsets);
 
-	cout << "uniform offsets for light 2" << endl;
+	/*cout << "uniform offsets for light 2" << endl;
 	for (int i = 0; i < 9; i++) {
 		cout << uniformOffsets[i] << endl;
-	}
+	}*/
 
 	ambientColorLoc[1] = uniformOffsets[0];
 	diffuseColorLoc[1] = uniformOffsets[1];
@@ -137,10 +159,10 @@ void Lights::setOffsets() {
 
 	glGetActiveUniformsiv(shaderProgram, 9, uniformIndeces, GL_UNIFORM_OFFSET, uniformOffsets);
 
-	cout << "uniform offsets for light 2" << endl;
+	/*cout << "uniform offsets for light 3" << endl;
 	for (int i = 0; i < 9; i++) {
 		cout << uniformOffsets[i] << endl;
-	}
+	}*/
 
 	ambientColorLoc[2] = uniformOffsets[0];
 	diffuseColorLoc[2] = uniformOffsets[1];
@@ -158,12 +180,16 @@ void Lights::setBuffer() {
 
 	glBindBuffer(GL_UNIFORM_BUFFER, lightBuffer);
 
+	cout << "Light Buffer ID " << lightBuffer << endl;
+
 	glBufferData(GL_UNIFORM_BUFFER, blockSize, NULL, GL_DYNAMIC_DRAW);
 
 	glBindBufferBase(GL_UNIFORM_BUFFER, bindingPoint, lightBuffer);
 
 	glBindBuffer(GL_UNIFORM_BUFFER, lightBuffer);
+}
 
+void Lights::setLightDefaults() {
 	// Set values for light 1
 	setAmbientColor(ambientColor[0], LightNum1);
 	setDiffuseColor(diffuseColor[0], LightNum1);
@@ -196,8 +222,6 @@ void Lights::setBuffer() {
 	setSpotCutoffCos(spotCutoffCos[2], LightNum3);
 	setSpotExponent(spotExponent[2], LightNum3);
 	setEnabled(enabled[2], LightNum3);
-
-	glBindBuffer(GL_UNIFORM_BUFFER, lightBuffer);
 }
 
 void Lights::setAmbientColor(glm::vec4 ambientColor, LightNum lNum) {

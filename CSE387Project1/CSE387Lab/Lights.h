@@ -11,7 +11,8 @@ public:
 	Lights();
 	~Lights();
 
-	GLuint lightBuffer;
+	static GLuint lightBuffer;
+	static bool bufferMapped;
 	string lightName;
 
 	void draw(); // needed to include because of extending visible object
@@ -31,9 +32,11 @@ public:
 	void setSpotExponent(float spotExponent, LightNum lNum);
 	void setEnabled(int enabled, LightNum lNum);
 
-	GLint blockIndex;
-	GLint blockSize;
-	GLint bindingPoint = 2;
+	void setLightDefaults();
+
+	static GLint blockIndex;
+	static GLint blockSize;
+	static GLint bindingPoint;
 
 	glm::vec4 ambientColor[3];
 	glm::vec4 diffuseColor[3];
@@ -45,13 +48,13 @@ public:
 	float spotExponent[3];
 	int enabled[3];
 	
-	GLint ambientColorLoc[3];
-	GLint diffuseColorLoc[3];
-	GLint specularColorLoc[3];
-	GLint positionOrDirectionLoc[3];
-	GLint spotDirectionLoc[3];
-	GLint isSpotLoc[3];
-	GLint spotCutoffCosLoc[3];
-	GLint spotExponentLoc[3];
-	GLint enabledLoc[3];
+	static GLint ambientColorLoc[3];
+	static GLint diffuseColorLoc[3];
+	static GLint specularColorLoc[3];
+	static GLint positionOrDirectionLoc[3];
+	static GLint spotDirectionLoc[3];
+	static GLint isSpotLoc[3];
+	static GLint spotCutoffCosLoc[3];
+	static GLint spotExponentLoc[3];
+	static GLint enabledLoc[3];
 };

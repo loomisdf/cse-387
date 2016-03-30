@@ -37,13 +37,14 @@ void MyScene::initialize()
 		{ GL_NONE, NULL } // signals that there are no more shaders 
 	};
 
-	shaderProgram_PV = BuildShaderProgram(per_pixel);
+	shaderProgram_PV = BuildShaderProgram(per_vertex);
 
 	shaderProgram_PP = BuildShaderProgram(per_pixel);
 
-	transformBlock.setShader(shaderProgram_PV);
-	transformBlock.initialize();
 	transformBlock.setShader(shaderProgram_PP);
+	transformBlock.initialize();
+
+	transformBlock.setShader(shaderProgram_PV);
 	transformBlock.initialize();
 
 	cube.setShader(shaderProgram_PV);
@@ -74,6 +75,10 @@ void MyScene::initialize()
 							glm::vec3(0.0f, 0.0f, -1.0f));
 
 	transformBlock.setViewingMatrix(viewingTransformation);
+
+	lights.setShader(shaderProgram_PP);
+	lights.initialize();
+
 	lights.setShader(shaderProgram_PV);
 	lights.initialize();
 }
@@ -87,9 +92,10 @@ void MyScene::resize(int windowWidth, int windowHeight)
 }
 
 
-
 void MyScene::draw()
 {
+	lights.setLightDefaults();
+
 	// Draw the cube and sphere
 	transformBlock.setModelMatrix(cube.getModelingTransformation());
 	cube.draw();
