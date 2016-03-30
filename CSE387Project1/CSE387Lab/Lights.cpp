@@ -28,7 +28,7 @@ Lights::Lights()
 	specularColor[2] = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 	positionOrDirection[2] = glm::vec4(0.0f, 0.0f, 12.0f, 1.0f);
 	spotDirection[2] = glm::vec3(0.0f, 0.0f, -1.0f);
-	isSpot[2] = 0;
+	isSpot[2] = 1;
 	spotCutoffCos[2] = glm::cos(glm::radians(10.0f));
 	spotExponent[2] = 0.9f;
 	enabled[2] = 1;

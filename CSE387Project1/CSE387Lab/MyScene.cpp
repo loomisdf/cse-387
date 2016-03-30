@@ -24,7 +24,7 @@ void MyScene::initialize()
 {
 	// Initialize OpenGL
 	glEnable(GL_DEPTH_TEST); // Turn depth testing
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // Set the window clear color
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // Set the window clear color
 	ShaderInfo per_vertex[] = {
 		{ GL_VERTEX_SHADER, "vertexShader.vs.glsl" },
 		{ GL_FRAGMENT_SHADER, "fragmentShader.fs.glsl" },
@@ -42,6 +42,8 @@ void MyScene::initialize()
 	shaderProgram_PP = BuildShaderProgram(per_pixel);
 
 	transformBlock.setShader(shaderProgram_PV);
+	transformBlock.initialize();
+	transformBlock.setShader(shaderProgram_PP);
 	transformBlock.initialize();
 
 	cube.setShader(shaderProgram_PV);

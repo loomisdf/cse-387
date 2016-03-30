@@ -27,5 +27,7 @@ public:
 	void setProjectionMatrix(glm::mat4 projectionMatrix);
 
 	void initialize();
+
+	static bool bufferMade;
 };
 

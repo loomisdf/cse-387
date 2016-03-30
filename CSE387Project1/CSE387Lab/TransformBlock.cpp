@@ -1,5 +1,6 @@
 #include "TransformBlock.h"
 
+bool TransformBlock::bufferMade = false;
 
 TransformBlock::TransformBlock()
 {
@@ -45,13 +46,21 @@ void TransformBlock::initialize() {
 	viewingMatrixLoc = uniformOffsets[1];
 	projectionMatrixLoc = uniformOffsets[2];
 
-	glGenBuffers(1, &transformBlockBuffer);
+	if (!bufferMade) {
 
-	glBindBuffer(GL_UNIFORM_BUFFER, transformBlockBuffer);
+		bufferMade = true;
 
-	glBufferData(GL_UNIFORM_BUFFER, transformBlockSize, NULL, GL_DYNAMIC_DRAW);
+		glGenBuffers(1, &transformBlockBuffer);
 
-	glBindBufferBase(GL_UNIFORM_BUFFER, transformBlockBindingPoint, transformBlockBuffer);
+		cout << "TransformBlock Buffer ID " << transformBlockBuffer << endl;
+
+		glBindBuffer(GL_UNIFORM_BUFFER, transformBlockBuffer);
+
+		glBufferData(GL_UNIFORM_BUFFER, transformBlockSize, NULL, GL_DYNAMIC_DRAW);
+
+		glBindBufferBase(GL_UNIFORM_BUFFER, transformBlockBindingPoint, transformBlockBuffer);
+
+	}
 }
 
 void TransformBlock::setModelMatrix(glm::mat4 modelMatrix) {
