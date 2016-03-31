@@ -87,6 +87,7 @@
     <ClInclude Include="Lights.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="MyScene.h" />
+    <ClInclude Include="SharedMaterialProperties.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="TransformBlock.h" />
     <ClInclude Include="VisibleObject.h" />

@@ -48,6 +48,9 @@
     <ClInclude Include="TransformBlock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SharedMaterialProperties.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Lab.cpp">
