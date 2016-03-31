@@ -1,0 +1,9 @@
+diff a/.gitignore b/.gitignore	(rejected hunks)
+@@ -249,5 +249,5 @@
+ .idea/
+ *.sln.iml
+ 
+-*.tlog
+-*.idb
++*.BMP
++*.bmp

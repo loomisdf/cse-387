@@ -248,6 +248,4 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
-
-*.tlog
-*.idb
+*.BMP
