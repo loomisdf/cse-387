@@ -29,6 +29,9 @@ struct Material
 	int textureMode;
 };
 
+//This may not be necessary
+uniform Material object;
+
 layout (shared) uniform MaterialBlock
 { 
 	Material object;
