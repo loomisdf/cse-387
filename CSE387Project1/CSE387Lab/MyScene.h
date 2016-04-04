@@ -33,6 +33,8 @@ public:
 
 	TransformBlock transformBlock;
 
+	SharedMaterialProperties sharedMaterialPropterties;
+
 protected:
 
 	GLuint projectionMatrixLocation;

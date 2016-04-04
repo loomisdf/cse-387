@@ -50,7 +50,6 @@ struct Material
 	{
 		setAmbientMat(objectColor);
 		setDiffuseMat(objectColor);
-
 	}
 
 	void setTextureMapped(TextureMode textureMode)
@@ -113,12 +112,14 @@ class SharedMaterialProperties
 public:
 
 	// Should be called for each shader program that includes the
-	// projectionViewBlock and worldEyeBlock uniform blocks.
+	// materialBlock uniform block
 	static void setUniformBlockForShader(GLuint shaderProgram);
 
 	// Call the set the material properties in the shader before 
 	// rendering the object.
 	static void setShaderMaterialProperties(Material material);
+
+	static GLint bindingPoint;
 
 protected:
 

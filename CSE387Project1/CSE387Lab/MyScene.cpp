@@ -24,7 +24,7 @@ void MyScene::initialize()
 {
 	// Initialize OpenGL
 	glEnable(GL_DEPTH_TEST); // Turn depth testing
-	glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // Set the window clear color
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // Set the window clear color
 	ShaderInfo per_vertex[] = {
 		{ GL_VERTEX_SHADER, "vertexShader.vs.glsl" },
 		{ GL_FRAGMENT_SHADER, "fragmentShader.fs.glsl" },
@@ -47,11 +47,18 @@ void MyScene::initialize()
 	transformBlock.setShader(shaderProgram_PV);
 	transformBlock.initialize();
 
+	// Set up sharedMaterialProperties
+	sharedMaterialPropterties.setUniformBlockForShader(shaderProgram_PV);
+
+	sharedMaterialPropterties.setUniformBlockForShader(shaderProgram_PP);
+
+	// TODO As it currently stands each object is getting the same texture
+
 	cube.setShader(shaderProgram_PV);
 	cube.initialize();
 	cube.material.setupTexture("BRICK.bmp", REPLACE_AMBIENT_DIFFUSE);
-	cube.material.setShaderMaterialProperties();
-	cube.material.setAmbientAndDiffuseMat(glm::vec4(0.1f, 0.1f, 1.0f, 1.0f));
+	//cube.material.setShaderMaterialProperties();
+	cube.material.setAmbientAndDiffuseMat(glm::vec4(0.0f, 1.0f, 0.0f, 1.0f));
 
 	sphere.setShader(shaderProgram_PV);
 	sphere.initialize();
@@ -97,15 +104,19 @@ void MyScene::draw()
 	lights.setLightDefaults();
 
 	// Draw the cube and sphere
+	sharedMaterialPropterties.setShaderMaterialProperties(cube.material);
 	transformBlock.setModelMatrix(cube.getModelingTransformation());
 	cube.draw();
 
+	sharedMaterialPropterties.setShaderMaterialProperties(sphere.material);
 	transformBlock.setModelMatrix(sphere.getModelingTransformation());
 	sphere.draw();
 	
+	sharedMaterialPropterties.setShaderMaterialProperties(earth.material);
 	transformBlock.setModelMatrix(earth.getModelingTransformation());
 	earth.draw();
 
+	sharedMaterialPropterties.setShaderMaterialProperties(moon.material);
 	transformBlock.setModelMatrix(moon.getModelingTransformation());
 	moon.draw();
 }

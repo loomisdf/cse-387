@@ -63,8 +63,6 @@ void Lights::initialize() {
 		bufferMapped = true;
 		setBuffer();
 	}
-
-	
 }
 
 void Lights::setUniformIndex() {

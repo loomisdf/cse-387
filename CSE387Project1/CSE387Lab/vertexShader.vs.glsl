@@ -30,7 +30,7 @@ struct Material
 };
 
 //This may not be necessary
-uniform Material object;
+//uniform Material object;
 
 layout (shared) uniform MaterialBlock
 { 

@@ -2,7 +2,7 @@
 
 #include "BasicIncludesAndDefines.h"
 
-struct Material
+struct OldMaterial
 {
 protected: 
 
@@ -35,9 +35,9 @@ protected:
 	GLuint textureObject;
 
 public:
-	Material();
+	OldMaterial();
 
-	Material(GLuint shaderProgram);
+	OldMaterial(GLuint shaderProgram);
 
 	void setUniformIndex(GLuint shaderProgram);
 

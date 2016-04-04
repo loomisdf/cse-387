@@ -71,7 +71,7 @@ void checkOpenGLErrors(const GLchar* methodName);
 
 #include "BuildShader.h"
 #include "bitmap_class.h"
-#include "Material.h"
+#include "SharedMaterialProperties.h"
 
 struct pntVertexData
 {

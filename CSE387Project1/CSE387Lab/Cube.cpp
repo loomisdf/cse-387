@@ -88,8 +88,7 @@ void Cube::initialize()
 
 	glUseProgram(shaderProgram);
 
-
-	material = Material(shaderProgram);
+	material = Material();
 
 	// Generate vertex array object and bind it for the first time
 	glGenVertexArrays(1, &vertexArrayObject);
@@ -135,7 +134,7 @@ void Cube::draw()
 	glUniformMatrix4fv(modelLocation, 1, GL_FALSE, glm::value_ptr(modelingTransformation));*/
 
 	// Set the material properties
-	material.setShaderMaterialProperties();
+	//material.setShaderMaterialProperties();
 
 	// Draw the cube
 	glDrawArrays(GL_TRIANGLES, 0, numberOfIndices);

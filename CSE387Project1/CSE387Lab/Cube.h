@@ -2,6 +2,8 @@
 
 #include "VisibleObject.h"
 
+#include "SharedMaterialProperties.h"
+
 class Cube : public VisibleObject
 {
 public:

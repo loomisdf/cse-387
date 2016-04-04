@@ -1,23 +1,23 @@
-#include "Material.h"
+#include "OldMaterial.h"
 
-bool Material::bufferMapped = false;
-GLuint Material::buffer;
+bool OldMaterial::bufferMapped = false;
+GLuint OldMaterial::buffer;
 
-GLint Material::blockIndex;
-GLint Material::blockSize;
+GLint OldMaterial::blockIndex;
+GLint OldMaterial::blockSize;
 
-GLint Material::ambientMatLoc;
-GLint Material::diffuseMatLoc;
-GLint Material::specularMatLoc;
-GLint Material::specularExpMatLoc;
-GLint Material::emissiveMatLoc;
-GLint Material::textureMappedLoc;
+GLint OldMaterial::ambientMatLoc;
+GLint OldMaterial::diffuseMatLoc;
+GLint OldMaterial::specularMatLoc;
+GLint OldMaterial::specularExpMatLoc;
+GLint OldMaterial::emissiveMatLoc;
+GLint OldMaterial::textureMappedLoc;
 
-Material::Material() {
+OldMaterial::OldMaterial() {
 	setDefaultProperties();
 }
 
-Material::Material(GLuint shaderProgram) {
+OldMaterial::OldMaterial(GLuint shaderProgram) {
 	setDefaultProperties();
 	setUniformIndex(shaderProgram);
 	setOffsets(shaderProgram);
@@ -28,7 +28,7 @@ Material::Material(GLuint shaderProgram) {
 	setShaderMaterialProperties();
 }
 
-void Material::setUniformIndex(GLuint shaderProgram) {
+void OldMaterial::setUniformIndex(GLuint shaderProgram) {
 	blockIndex = glGetUniformBlockIndex(shaderProgram, "MaterialBlock");
 
 	glGetActiveUniformBlockiv(shaderProgram, blockIndex, GL_UNIFORM_BLOCK_DATA_SIZE, &blockSize);
@@ -36,7 +36,7 @@ void Material::setUniformIndex(GLuint shaderProgram) {
 	glUniformBlockBinding(shaderProgram, blockIndex, bindingPoint);
 }
 
-void Material::setOffsets(GLuint shaderProgram) {
+void OldMaterial::setOffsets(GLuint shaderProgram) {
 	GLuint uniformIndeces[6] = { 0 };
 	GLint uniformOffsets[6] = { 0 };
 
@@ -53,7 +53,7 @@ void Material::setOffsets(GLuint shaderProgram) {
 
 	glGetActiveUniformsiv(shaderProgram, 6, uniformIndeces, GL_UNIFORM_OFFSET, uniformOffsets);
 
-	cout << "uniform offsets for material object" << endl;
+	cout << "uniform offsets for OldMaterial object" << endl;
 	for (int i = 0; i < 6; i++) {
 		cout << uniformOffsets[i] << endl;
 	}
@@ -66,7 +66,7 @@ void Material::setOffsets(GLuint shaderProgram) {
 	this->textureMappedLoc = uniformOffsets[5];
 }
 
-void Material::setBuffer() {
+void OldMaterial::setBuffer() {
 	glGenBuffers(1, &buffer);
 
 	glBindBuffer(GL_UNIFORM_BUFFER, buffer);
@@ -76,7 +76,7 @@ void Material::setBuffer() {
 	glBindBufferBase(GL_UNIFORM_BUFFER, bindingPoint, buffer);
 }
 
-void Material::setDefaultProperties()
+void OldMaterial::setDefaultProperties()
 {
 	ambientMat = glm::vec4( 0.75f, 0.75f, 0.75f, 1.0f );
 	diffuseMat = glm::vec4( 0.75f, 0.75f, 0.75f, 1.0f );
@@ -86,7 +86,7 @@ void Material::setDefaultProperties()
 	textureMode = NO_TEXTURE;
 }
 
-void Material::setShaderMaterialProperties()
+void OldMaterial::setShaderMaterialProperties()
 {
 	setAmbientMat( ambientMat );
 	setDiffuseMat( diffuseMat );
@@ -103,35 +103,35 @@ void Material::setShaderMaterialProperties()
 	}
 }
 
-void Material::setAmbientMat( glm::vec4 ambientMat )
+void OldMaterial::setAmbientMat( glm::vec4 ambientMat )
 {
 	this->ambientMat = ambientMat;
 	glBindBuffer(GL_UNIFORM_BUFFER, buffer);
 	glBufferSubData(GL_UNIFORM_BUFFER, ambientMatLoc, sizeof(glm::vec4), glm::value_ptr(ambientMat));
 }
 
-void Material::setDiffuseMat( glm::vec4 diffuseMat )
+void OldMaterial::setDiffuseMat( glm::vec4 diffuseMat )
 {
 	this->diffuseMat = diffuseMat;
 	glBindBuffer(GL_UNIFORM_BUFFER, buffer);
 	glBufferSubData(GL_UNIFORM_BUFFER, diffuseMatLoc, sizeof(glm::vec4), glm::value_ptr(diffuseMat));
 }
 
-void Material::setSpecularMat( glm::vec4 specularMat )
+void OldMaterial::setSpecularMat( glm::vec4 specularMat )
 {
 	this->specularMat = specularMat;
 	glBindBuffer(GL_UNIFORM_BUFFER, buffer);
 	glBufferSubData(GL_UNIFORM_BUFFER, specularMatLoc, sizeof(glm::vec4), glm::value_ptr(specularMat));
 }
 
-void Material::setSpecularExponentMat( float specularExpMat )
+void OldMaterial::setSpecularExponentMat( float specularExpMat )
 {
 	this->specularExpMat = specularExpMat;
 	glBindBuffer(GL_UNIFORM_BUFFER, buffer);
 	glBufferSubData(GL_UNIFORM_BUFFER, specularExpMatLoc, sizeof(float), &specularExpMat);
 }
 
-void Material::setEmissiveMat( glm::vec4 emissiveMat )
+void OldMaterial::setEmissiveMat( glm::vec4 emissiveMat )
 {
 	this->emissiveMat = emissiveMat;
 	
@@ -139,25 +139,25 @@ void Material::setEmissiveMat( glm::vec4 emissiveMat )
 	glBufferSubData(GL_UNIFORM_BUFFER, emissiveMatLoc, sizeof(glm::vec4), glm::value_ptr(emissiveMat));
 }
 
-void Material::setAmbientAndDiffuseMat( glm::vec4 objectColor )
+void OldMaterial::setAmbientAndDiffuseMat( glm::vec4 objectColor )
 {
 	setAmbientMat( objectColor );
 	setDiffuseMat( objectColor );
 }
 
-TextureMode Material::getTextureMapped() 
+TextureMode OldMaterial::getTextureMapped() 
 { 
 	return textureMode; 
 }
 
-void Material::setTextureMapped(int textureM)
+void OldMaterial::setTextureMapped(int textureM)
 {
 	this->textureMode = textureMode;
 	glBindBuffer(GL_UNIFORM_BUFFER, buffer);
 	glBufferSubData(GL_UNIFORM_BUFFER, textureMappedLoc, sizeof(int), &textureM);
 }
 
-bool Material::setupTexture(string textureFileName, TextureMode textureMode = REPLACE_AMBIENT_DIFFUSE)
+bool OldMaterial::setupTexture(string textureFileName, TextureMode textureMode = REPLACE_AMBIENT_DIFFUSE)
 {
 	CBitmap image;
 

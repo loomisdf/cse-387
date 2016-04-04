@@ -85,7 +85,7 @@
     <ClInclude Include="Lab.h" />
     <ClInclude Include="BuildShader.h" />
     <ClInclude Include="Lights.h" />
-    <ClInclude Include="Material.h" />
+    <ClInclude Include="OldMaterial.h" />
     <ClInclude Include="MyScene.h" />
     <ClInclude Include="SharedMaterialProperties.h" />
     <ClInclude Include="Sphere.h" />
@@ -99,7 +99,9 @@
     <ClCompile Include="Lab.cpp" />
     <ClCompile Include="BuildShader.cpp" />
     <ClCompile Include="Lights.cpp" />
+    <ClCompile Include="OldMaterial.cpp" />
     <ClCompile Include="MyScene.cpp" />
+    <ClCompile Include="SharedMaterialProperties.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="TransformBlock.cpp" />
     <ClCompile Include="VisibleObject.cpp" />
