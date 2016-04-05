@@ -52,8 +52,6 @@ void MyScene::initialize()
 
 	sharedMaterialPropterties.setUniformBlockForShader(shaderProgram_PP);
 
-	// TODO As it currently stands each object is getting the same texture
-
 	cube.setShader(shaderProgram_PV);
 	cube.initialize();
 	cube.material.setupTexture("BRICK.bmp", REPLACE_AMBIENT_DIFFUSE);
