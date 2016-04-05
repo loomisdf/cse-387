@@ -312,16 +312,22 @@ void Lights::setPositionOrDirection(glm::vec4 positionOrDirection, LightNum lNum
 
 void Lights::setSpotDirection(glm::vec3 spotDirection, LightNum lNum) {
 	switch (lNum) {
-	case(0):
+	case(0) :
 		this->spotDirection[0] = spotDirection;
 		glBindBuffer(GL_UNIFORM_BUFFER, lightBuffer);
 		glBufferSubData(GL_UNIFORM_BUFFER, spotDirectionLoc[0], sizeof(glm::vec3), glm::value_ptr(spotDirection));
 		break;
 
-	case(1):
+	case(1) :
 		this->spotDirection[1] = spotDirection;
 		glBindBuffer(GL_UNIFORM_BUFFER, lightBuffer);
 		glBufferSubData(GL_UNIFORM_BUFFER, spotDirectionLoc[1], sizeof(glm::vec3), glm::value_ptr(spotDirection));
+		break;
+
+	case(2) :
+		this->spotDirection[2] = spotDirection;
+		glBindBuffer(GL_UNIFORM_BUFFER, lightBuffer);
+		glBufferSubData(GL_UNIFORM_BUFFER, spotDirectionLoc[2], sizeof(glm::vec3), glm::value_ptr(spotDirection));
 		break;
 	}
 }
