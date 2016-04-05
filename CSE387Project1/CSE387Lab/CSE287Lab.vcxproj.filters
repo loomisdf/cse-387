@@ -48,9 +48,6 @@
     <ClInclude Include="SharedMaterialProperties.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="OldMaterial.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Lab.cpp">
@@ -84,9 +81,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SharedMaterialProperties.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="OldMaterial.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
