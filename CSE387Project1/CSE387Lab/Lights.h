@@ -37,6 +37,7 @@ public:
 	static GLint blockIndex;
 	static GLint blockSize;
 	static GLint bindingPoint;
+	string lightBlockName = "LightBlock";
 
 	glm::vec4 ambientColor[3];
 	glm::vec4 diffuseColor[3];

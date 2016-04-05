@@ -24,16 +24,16 @@ void SharedMaterialProperties::setShaderMaterialProperties(Material material)  {
 		glBindBuffer(GL_UNIFORM_BUFFER, materialBuffer);
 
 		// set ambient
-		glBufferSubData(GL_UNIFORM_BUFFER, ambientMatLoc, sizeof(glm::mat4), glm::value_ptr(material.ambientMat));
+		glBufferSubData(GL_UNIFORM_BUFFER, ambientMatLoc, sizeof(glm::vec4), glm::value_ptr(material.ambientMat));
 
 		// set diffuse
-		glBufferSubData(GL_UNIFORM_BUFFER, diffuseMatLoc, sizeof(glm::mat4), glm::value_ptr(material.diffuseMat));
+		glBufferSubData(GL_UNIFORM_BUFFER, diffuseMatLoc, sizeof(glm::vec4), glm::value_ptr(material.diffuseMat));
 
 		// set specularMat
-		glBufferSubData(GL_UNIFORM_BUFFER, specularMatLoc, sizeof(glm::mat4), glm::value_ptr(material.specularMat));
+		glBufferSubData(GL_UNIFORM_BUFFER, specularMatLoc, sizeof(glm::vec4), glm::value_ptr(material.specularMat));
 
 		// set emissiveMat
-		glBufferSubData(GL_UNIFORM_BUFFER, emissiveMatLoc, sizeof(glm::mat4), glm::value_ptr(material.emissiveMat));
+		glBufferSubData(GL_UNIFORM_BUFFER, emissiveMatLoc, sizeof(glm::vec4), glm::value_ptr(material.emissiveMat));
 
 		// set specularExp
 		glBufferSubData(GL_UNIFORM_BUFFER, specularExpLoc, sizeof(float), &material.specularExpMat);

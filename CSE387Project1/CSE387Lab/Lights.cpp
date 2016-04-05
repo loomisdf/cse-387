@@ -65,12 +65,32 @@ void Lights::initialize() {
 	}
 }
 
+bool checkLocation(const GLchar* locationName, GLuint indice)
+{
+	if (indice == GL_INVALID_INDEX) {
+		cout << locationName << " not found in shader." << endl;
+
+		return false;
+	}
+	else {
+
+		//cout << locationName << " index is " <<  indice << endl; 
+		return true;
+	}
+
+} // end checkLocationFound
+
 void Lights::setUniformIndex() {
-	blockIndex = glGetUniformBlockIndex(shaderProgram, "LightBlock");
+	blockIndex = glGetUniformBlockIndex(shaderProgram, lightBlockName.c_str());
 
-	glGetActiveUniformBlockiv(shaderProgram, blockIndex, GL_UNIFORM_BLOCK_DATA_SIZE, &blockSize);
+	cout << lightBlockName.c_str() << " index is " << blockIndex << endl;
 
-	glUniformBlockBinding(shaderProgram, blockIndex, bindingPoint);
+	if (checkLocation(lightBlockName.c_str(), blockIndex)) {
+		glGetActiveUniformBlockiv(shaderProgram, blockIndex, GL_UNIFORM_BLOCK_DATA_SIZE, &blockSize);
+		cout << lightBlockName.c_str() << " size is " << blockSize << endl;
+
+		glUniformBlockBinding(shaderProgram, blockIndex, bindingPoint);
+	}
 }
 
 void Lights::setOffsets() {
@@ -241,6 +261,9 @@ void Lights::setAmbientColor(glm::vec4 ambientColor, LightNum lNum) {
 		glBindBuffer(GL_UNIFORM_BUFFER, lightBuffer);
 		glBufferSubData(GL_UNIFORM_BUFFER, ambientColorLoc[2], sizeof(glm::vec4), glm::value_ptr(ambientColor));
 		break;
+
+	default:
+		cout << "Light doesn't exist" << endl;
 	}
 }
 
@@ -263,6 +286,9 @@ void Lights::setDiffuseColor(glm::vec4 diffuseColor, LightNum lNum) {
 		glBindBuffer(GL_UNIFORM_BUFFER, lightBuffer);
 		glBufferSubData(GL_UNIFORM_BUFFER, diffuseColorLoc[2], sizeof(glm::vec4), glm::value_ptr(diffuseColor));
 		break;
+
+	default:
+		cout << "Light doesn't exist" << endl;
 	}
 }
 
@@ -285,6 +311,9 @@ void Lights::setSpecularColor(glm::vec4 specularColor, LightNum lNum) {
 		glBindBuffer(GL_UNIFORM_BUFFER, lightBuffer);
 		glBufferSubData(GL_UNIFORM_BUFFER, specularColorLoc[2], sizeof(glm::vec4), glm::value_ptr(specularColor));
 		break;
+
+	default:
+		cout << "Light doesn't exist" << endl;
 	}
 }
 
@@ -307,6 +336,9 @@ void Lights::setPositionOrDirection(glm::vec4 positionOrDirection, LightNum lNum
 		glBindBuffer(GL_UNIFORM_BUFFER, lightBuffer);
 		glBufferSubData(GL_UNIFORM_BUFFER, positionOrDirectionLoc[2], sizeof(glm::vec4), glm::value_ptr(positionOrDirection));
 		break;
+
+	default:
+		cout << "Light doesn't exist" << endl;
 	}
 }
 
@@ -329,6 +361,9 @@ void Lights::setSpotDirection(glm::vec3 spotDirection, LightNum lNum) {
 		glBindBuffer(GL_UNIFORM_BUFFER, lightBuffer);
 		glBufferSubData(GL_UNIFORM_BUFFER, spotDirectionLoc[2], sizeof(glm::vec3), glm::value_ptr(spotDirection));
 		break;
+
+	default:
+		cout << "Light doesn't exist" << endl;
 	}
 }
 
@@ -351,6 +386,9 @@ void Lights::setIsSpot(int isSpot, LightNum lNum) {
 		glBindBuffer(GL_UNIFORM_BUFFER, lightBuffer);
 		glBufferSubData(GL_UNIFORM_BUFFER, isSpotLoc[2], sizeof(int), &isSpot);
 		break;
+
+	default:
+		cout << "Light doesn't exist" << endl;
 	}
 }
 
@@ -373,6 +411,9 @@ void Lights::setSpotCutoffCos(float spotCutoffCos, LightNum lNum) {
 		glBindBuffer(GL_UNIFORM_BUFFER, lightBuffer);
 		glBufferSubData(GL_UNIFORM_BUFFER, spotCutoffCosLoc[2], sizeof(float), &spotCutoffCos);
 		break;
+
+	default:
+		cout << "Light doesn't exist" << endl;
 	}
 }
 
@@ -395,6 +436,9 @@ void Lights::setSpotExponent(float spotExponent, LightNum lNum) {
 		glBindBuffer(GL_UNIFORM_BUFFER, lightBuffer);
 		glBufferSubData(GL_UNIFORM_BUFFER, spotExponentLoc[2], sizeof(float), &spotExponent);
 		break;
+
+	default:
+		cout << "Light doesn't exist" << endl;
 	}
 }
 
@@ -417,6 +461,9 @@ void Lights::setEnabled(int enabled, LightNum lNum) {
 		glBindBuffer(GL_UNIFORM_BUFFER, lightBuffer);
 		glBufferSubData(GL_UNIFORM_BUFFER, enabledLoc[2], sizeof(int), &enabled);
 		break;
+
+	default:
+		cout << "Light doesn't exist" << endl;
 	}
 }
 
