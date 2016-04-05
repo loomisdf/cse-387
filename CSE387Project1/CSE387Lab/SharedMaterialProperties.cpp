@@ -41,6 +41,15 @@ void SharedMaterialProperties::setShaderMaterialProperties(Material material)  {
 		// set textureMode
 		glBufferSubData(GL_UNIFORM_BUFFER, textureModeLoc, sizeof(float), &material.textureMode);
 
+		glBindBuffer(GL_UNIFORM_BUFFER, 0);
+
+		if (material.textureMode != NO_TEXTURE) {
+			glBindTexture(GL_TEXTURE_2D, material.textureObject);
+		}
+		else {
+			glBindTexture(GL_TEXTURE_2D, 0);
+		}
+
 	}
 }
 
@@ -56,6 +65,8 @@ void SharedMaterialProperties::setUniformBlockForShader(GLuint shaderProgram) {
 
 		// Find the byte offsets of the uniform block variables
 		findOffsets(shaderProgram);
+
+		blockSizeAndOffetsSet = true;
 	}
 }
 
@@ -108,7 +119,6 @@ void SharedMaterialProperties::allocateBuffers(GLuint shaderProgram) {
 		// Assign the buffer to a binding point to be the same as the uniform in the shader(s). In this case 1.
 		glBindBufferBase(GL_UNIFORM_BUFFER, bindingPoint, materialBuffer);
 
-		blockSizeAndOffetsSet = true;
 	}
 }
 
