@@ -54,24 +54,24 @@ void MyScene::initialize()
 	cube.setShader(shaderProgram);
 	cube.initialize();
 	cube.material.setAmbientAndDiffuseMat(glm::vec4(0.1f, 0.1f, 1.0f, 1.0f));
-	
-	children.push_back(&cube);
+	addChild(&cube);
 
 	sphere.setShader(shaderProgram);
 	sphere.initialize();
 	sphere.material.setAmbientAndDiffuseMat(glm::vec4(1.0f, 1.1f, 0.1f, 1.0f));
 	
-	children.push_back(&sphere);
+	addChild(&sphere);
+
+
 	earth.setShader(shaderProgram);
 	earth.initialize();
 	earth.material.setAmbientAndDiffuseMat(glm::vec4(0.0f, 0.5f, 0.0f, 1.0f));
+	sphere.addChild(&earth);
 
-	children.push_back(&earth);
 
 	moon.setShader(shaderProgram);
 	moon.initialize();
-
-	children.push_back(&moon);
+	earth.addChild(&moon);
 
 	checkOpenGLErrors("MyScene::initialize2");
 
@@ -248,21 +248,17 @@ void MyScene::update(float deltaTime)
 					 glm::translate(glm::vec3(10.0f, 0.0f, 0.0f));
 
 	// Set the modeling transformation
-	sphere.setModelingTransformation(sunTrans);
+	sphere.setLocalTransformation(sunTrans);
 
-	this->earthTrans = glm::rotate(angle, glm::vec3(0.0f, 1.0f, 0.0f)) *
-		glm::translate(glm::vec3(10.0f, 0.0f, 0.0f)) *
+	this->earthTrans = 
 		glm::rotate(angle, glm::vec3(0.0f, 1.0f, 0.0f)) *
 		glm::translate(glm::vec3(5.0f, 0.0f, 0.0f));
 
-	earth.setModelingTransformation(earthTrans);
+	earth.setLocalTransformation(earthTrans);
 
-	this->moonTrans = glm::rotate(angle, glm::vec3(0.0f, 1.0f, 0.0f)) *
-		glm::translate(glm::vec3(10.0f, 0.0f, 0.0f)) *
-		glm::rotate(angle, glm::vec3(0.0f, 1.0f, 0.0f)) *
-		glm::translate(glm::vec3(5.0f, 0.0f, 0.0f)) * 
+	this->moonTrans = 
 		glm::rotate(angle, glm::vec3(0.0f, 1.0f, 0.0f)) *
 		glm::translate(glm::vec3(2.5f, 0.0f, 0.0f));
 
-	moon.setModelingTransformation(moonTrans);
+	moon.setLocalTransformation(moonTrans);
 }

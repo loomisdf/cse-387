@@ -11,7 +11,7 @@ public:
 
 	~Sphere();
 
-	void initialize();
+	virtual void initialize();
 
 	void update(float deltaTime);
 

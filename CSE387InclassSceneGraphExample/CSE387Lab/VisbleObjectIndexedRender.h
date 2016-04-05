@@ -7,6 +7,6 @@ public:
 	VisbleObjectIndexedRender();
 	~VisbleObjectIndexedRender();
 
-	void draw();
+	virtual void draw();
 };
 

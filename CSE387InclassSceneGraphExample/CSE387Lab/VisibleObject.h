@@ -17,14 +17,16 @@ public:
 	GLuint createTextureObject(string textureFileName);
 
 	// Set the modeling transformation that will be used when this object is rendered
-	void setModelingTransformation(glm::mat4 modelingTransformation)
-	{ this->modelingTransformation = modelingTransformation; }
+	void setLocalTransformation(glm::mat4 modelingTransformation)
+	{ 
+		this->modelingTransformation = modelingTransformation; 
+	}
 
 	// Initializes this object
 	virtual void initialize() = 0;
 
 	// "Renders" this object
-	virtual void draw() = 0;
+	virtual void draw();
 
 	void update(float deltaTime){}
 
@@ -39,6 +41,8 @@ public:
 	glm::mat4 getLocalTransformation();
 
 	glm::mat4 getWorldTransformation();
+
+	void reparent(VisibleObject * newChild);
 
 protected: 
 

@@ -10,7 +10,7 @@ public:
 
 	~Cube();
 
-	void initialize();
+	virtual void initialize();
 
 };
 

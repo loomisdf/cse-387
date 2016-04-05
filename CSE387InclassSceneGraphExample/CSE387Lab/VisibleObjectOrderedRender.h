@@ -7,6 +7,6 @@ public:
 	VisibleObjectOrderedRender();
 	~VisibleObjectOrderedRender();
 
-	void draw();
+	virtual void draw();
 };
 

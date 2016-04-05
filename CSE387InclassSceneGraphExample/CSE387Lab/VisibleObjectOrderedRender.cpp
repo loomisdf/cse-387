@@ -19,7 +19,7 @@ void VisibleObjectOrderedRender::draw()
 	glUseProgram(shaderProgram);
 
 	// Set the modeling transformation
-	SharedProjectionAndViewing::setModelingMatrix(modelingTransformation);
+	SharedProjectionAndViewing::setModelingMatrix(getWorldTransformation());
 
 	// Set the material properties and bind the texture object
 	material.setShaderMaterialProperties();
