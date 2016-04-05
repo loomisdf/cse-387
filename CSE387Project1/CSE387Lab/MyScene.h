@@ -55,6 +55,9 @@ protected:
 	Sphere earth;
 	glm::mat4 earthTrans;
 
+	Sphere saturn;
+	glm::mat4 saturnTrans;
+
 	Lights lights;
 
 	GLuint shaderProgram_PV;

@@ -5,7 +5,7 @@
 
 
 MyScene::MyScene()
-	:sphere(1, 64, 64), earth(0.5), moon(0.25)
+	:sphere(1, 64, 64), earth(0.5), moon(0.25), saturn(.75)
 {
 	cout << "Scene Constructor Called." << endl;
 }
@@ -63,6 +63,11 @@ void MyScene::initialize()
 	sphere.material.setupTexture("sun.bmp", REPLACE_AMBIENT_DIFFUSE);
 	sphere.material.setAmbientAndDiffuseMat(glm::vec4(1.0f, 1.1f, 0.1f, 1.0f));
 
+	saturn.setShader(shaderProgram_PV);
+	saturn.initialize();
+	saturn.material.setupTexture("saturn.bmp", REPLACE_AMBIENT_DIFFUSE);
+	saturn.material.setAmbientAndDiffuseMat(glm::vec4(1.0f, 1.1f, 0.1f, 1.0f));
+
 	earth.setShader(shaderProgram_PV);
 	earth.initialize();
 	earth.material.setupTexture("earth.bmp", REPLACE_AMBIENT_DIFFUSE);
@@ -109,6 +114,10 @@ void MyScene::draw()
 	sharedMaterialPropterties.setShaderMaterialProperties(sphere.material);
 	transformBlock.setModelMatrix(sphere.getModelingTransformation());
 	sphere.draw();
+
+	sharedMaterialPropterties.setShaderMaterialProperties(saturn.material);
+	transformBlock.setModelMatrix(saturn.getModelingTransformation());
+	saturn.draw();
 	
 	sharedMaterialPropterties.setShaderMaterialProperties(earth.material);
 	transformBlock.setModelMatrix(earth.getModelingTransformation());
@@ -131,6 +140,10 @@ void MyScene::update(float deltaTime) {
 	this->sunTrans = glm::rotate(angle, glm::vec3(0.0f, 1.0f, 0.0f)) * 
 					 glm::translate(glm::vec3(10.0f, 0.0f, 0.0f));
 
+	this->saturnTrans = sunTrans *
+					 glm::rotate(angle, glm::vec3(0.0f, 4.0f, 0.0f)) *
+					 glm::translate(glm::vec3(10.0f, 0.0f, 3.0f));
+
 	this->earthTrans = sunTrans *
 					 glm::rotate(angle, glm::vec3(0.0f, 1.0f, 0.0f)) *
 					 glm::translate(glm::vec3(5.0f, 0.0f, 0.0f));
@@ -143,6 +156,8 @@ void MyScene::update(float deltaTime) {
 	cube.setModelingTransformation(cubeTrans);
 
 	sphere.setModelingTransformation(sunTrans);
+
+	saturn.setModelingTransformation(saturnTrans);
 
 	earth.setModelingTransformation(earthTrans);
 
@@ -172,6 +187,7 @@ void MyScene::setShader(ShaderProgram shader) {
 	case(0) :
 		cube.setShader(shaderProgram_PV);
 		sphere.setShader(shaderProgram_PV);
+		saturn.setShader(shaderProgram_PV);
 		earth.setShader(shaderProgram_PV);
 		moon.setShader(shaderProgram_PV);
 		lights.setShader(shaderProgram_PV);
@@ -181,6 +197,7 @@ void MyScene::setShader(ShaderProgram shader) {
 	case(1) :
 		cube.setShader(shaderProgram_PP);
 		sphere.setShader(shaderProgram_PP);
+		saturn.setShader(shaderProgram_PP);
 		earth.setShader(shaderProgram_PP);
 		moon.setShader(shaderProgram_PP);
 		lights.setShader(shaderProgram_PP);
@@ -192,6 +209,7 @@ void MyScene::setShader(ShaderProgram shader) {
 void MyScene::setTextureMode(TextureMode textureMode) {
 	cube.material.setTextureMapped(textureMode);
 	sphere.material.setTextureMapped(textureMode);
+	saturn.material.setTextureMapped(textureMode);
 	earth.material.setTextureMapped(textureMode);
 	moon.material.setTextureMapped(textureMode);
 }

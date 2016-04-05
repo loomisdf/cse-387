@@ -103,5 +103,8 @@
     <Image Include="moon.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="saturn.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
