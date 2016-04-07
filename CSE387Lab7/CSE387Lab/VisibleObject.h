@@ -23,7 +23,7 @@ public:
 	// "Renders" this object
 	virtual void draw();
 
-	virtual bool update(float deltaTime){ return true; }; 
+	virtual bool update(float deltaTime); 
 
 	void addChild(VisibleObject* visibleObject);
 

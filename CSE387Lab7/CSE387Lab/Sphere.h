@@ -13,6 +13,8 @@ public:
 
 	virtual void initialize();
 
+	bool update(float deltatime);
+
 protected:
 
 	void initializeSphereTop();

@@ -20,6 +20,8 @@ public:
 
 	virtual void draw();
 
+	bool update(float deltatime);
+
 protected:
 
 	void loadModel(const std::string& path);

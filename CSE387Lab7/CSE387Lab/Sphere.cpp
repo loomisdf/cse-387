@@ -73,7 +73,14 @@ void Sphere::initialize()
 	v.clear();
 	indices.clear();
 
+	VisibleObject::initialize();
+
 } // end initialize
+
+bool Sphere::update(float deltatime) {
+	VisibleObject::update(deltatime);
+	return true;
+}
 
 
 // Construct visual object display list.

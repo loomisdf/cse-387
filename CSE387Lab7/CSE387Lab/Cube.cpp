@@ -109,5 +109,11 @@ void Cube::initialize()
 	numberOfIndices = v.size();
 	v.clear();
 	
+	VisibleObject::initialize();
+}
+
+bool Cube::update(float deltatime) {
+	VisibleObject::update(deltatime);
+	return true;
 }
 

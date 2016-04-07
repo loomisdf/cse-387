@@ -127,6 +127,13 @@ void AssimpModel::initialize()
 
 	checkOpenGLErrors("AssimpModel::initialize");
 
+	VisibleObject::initialize();
+
+}
+
+bool AssimpModel::update(float deltatime) {
+	VisibleObject::update(deltatime);
+	return true;
 }
 
 

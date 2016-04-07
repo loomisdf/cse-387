@@ -89,4 +89,6 @@ void Mesh::initialize() {
 	this->indices.clear();
 
 	glBindVertexArray(0);
+
+	VisibleObject::initialize();
 }
