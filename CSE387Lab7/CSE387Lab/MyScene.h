@@ -26,6 +26,8 @@ public:
 
 	void setTextureMode(int mode);
 
+	void detachMoon();
+
 protected:
 
 	GLuint perPixelShaderProgram;

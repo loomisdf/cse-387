@@ -239,6 +239,18 @@ void MyScene::toggleLights(int light)
 
 }
 
+void MyScene::detachMoon() {
+	static bool moonDetached = false;
+	if (moonDetached) {
+		earth.reparent(&moon);
+		moonDetached = false;
+	}
+	else {
+		moon.detachFromParent();
+		moonDetached = true;
+	}
+}
+
 void MyScene::selectShader(int shaderProgramNumber)
 {
 	switch (shaderProgramNumber)

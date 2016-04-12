@@ -80,6 +80,19 @@ VisibleObject* VisibleObject::detachFromParent() {
 	return NULL;
 }
 
+bool VisibleObject::detachAndDeleteChild(VisibleObject* child) {
+	for (unsigned int i = 0; i < children.size(); i++) {
+		if (children[i] == child) {
+			children.erase(children.begin() + i);
+			delete children[i];
+			return true;
+		}
+	}
+	return false;
+}
+
 void VisibleObject::reparent(VisibleObject* newChild) {
-	//glm::inverse(getParentWorldtransformation) * localTransformation
+	
+	//newChild->parent = this;
+	newChild->localTransformation = glm::inverse(getParentWorldTransform()) * newChild->getLocalTransformation();
 }

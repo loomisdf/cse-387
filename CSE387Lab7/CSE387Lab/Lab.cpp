@@ -91,6 +91,9 @@ static void KeyboardCB(unsigned char key, int x, int y)
 	case('2') :
 		scene.toggleLights(2);
 		break;
+	case('m') :
+		scene.detachMoon();
+		break;
 	default:
 		cout << key << " key pressed." << endl;
 	}
