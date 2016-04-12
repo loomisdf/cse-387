@@ -2,7 +2,7 @@
 
 
 MyScene::MyScene()
-	:sphere(1, 64, 64), earth(0.5), moon(0.25), model("model/nanosuit.obj"), model2("space/retro_rocket_fbx/retro_rocket.fbx")
+	//:sphere(1, 64, 64), earth(0.5), moon(0.25), model("model/nanosuit.obj"), model2("space/retro_rocket_fbx/retro_rocket.fbx")
 {
 	cout << "Scene Constructor Called." << endl;
 }
@@ -68,31 +68,41 @@ void MyScene::initialize()
 	SharedMaterialProperties::setUniformBlockForShader(shaderProgram);
 	SharedGeneralLighting::setUniformBlockForShader(shaderProgram);
 
-	cube.initialize();
-	cube.material.setAmbientAndDiffuseMat(glm::vec4(0.1f, 0.1f, 1.0f, 1.0f));
-	cube.material.setupTexture("Brick.bmp", DECAL);
-	addChild(&cube);
+	Cube* cube = new Cube();
 
-	sphere.initialize();
-	sphere.material.setAmbientAndDiffuseMat(glm::vec4(1.0f, 1.0f, 0.1f, 1.0f));
-	sphere.material.setupTexture("preview_sun.jpg", REPLACE_AMBIENT_DIFFUSE);
-	addChild(&sphere);
+	cube->initialize();
+	cube->material.setAmbientAndDiffuseMat(glm::vec4(0.1f, 0.1f, 1.0f, 1.0f));
+	cube->material.setupTexture("Brick.bmp", DECAL);
+	addChild(cube);
 
-	earth.initialize();
-	earth.material.setAmbientAndDiffuseMat(glm::vec4(0.0f, 0.5f, 0.0f, 1.0f));
-	earth.material.setupTexture("earth.bmp", REPLACE_AMBIENT_DIFFUSE);
-	sphere.addChild(&earth);
+	Sphere* sphere = new Sphere(1, 64, 64);
 
-	moon.initialize();
-	moon.material.setupTexture("moon.bmp", REPLACE_AMBIENT_DIFFUSE);
-	earth.addChild(&moon);
+	sphere->initialize();
+	sphere->material.setAmbientAndDiffuseMat(glm::vec4(1.0f, 1.0f, 0.1f, 1.0f));
+	sphere->material.setupTexture("preview_sun.jpg", REPLACE_AMBIENT_DIFFUSE);
+	addChild(sphere);
 
-	model.initialize();
-	model.setShader(modelShaderProgram);
-	model.material.setTextureMapped(REPLACE_AMBIENT_DIFFUSE);
-	model.material.setSpecularExponentMat(16.0f);
+	Sphere* earth = new Sphere(0.5);
 
-	addChild(&model);
+	earth->initialize();
+	earth->material.setAmbientAndDiffuseMat(glm::vec4(0.0f, 0.5f, 0.0f, 1.0f));
+	earth->material.setupTexture("earth.bmp", REPLACE_AMBIENT_DIFFUSE);
+	sphere->addChild(earth);
+
+	Sphere* moon = new Sphere(0.25);
+
+	moon->initialize();
+	moon->material.setupTexture("moon.bmp", REPLACE_AMBIENT_DIFFUSE);
+	earth->addChild(moon);
+
+	AssimpModel* model = new AssimpModel("model/nanosuit.obj");
+
+	model->initialize();
+	model->setShader(modelShaderProgram);
+	model->material.setTextureMapped(REPLACE_AMBIENT_DIFFUSE);
+	model->material.setSpecularExponentMat(16.0f);
+
+	addChild(model);
 
 	// Initialize the shader for all the obects
 	selectShader(0);
@@ -181,29 +191,29 @@ bool MyScene::update(float deltaTime)
 
 	angle += (rotationRate * deltaTime);
 
-	cube.setLocalTransformation(glm::translate(glm::vec3(0.0f, -1.5f, 0.0f)));
+	//cube.setLocalTransformation(glm::translate(glm::vec3(0.0f, -1.5f, 0.0f)));
 
-	this->sunTrans = glm::rotate(angle, glm::vec3(0.0f, 1.0f, 0.0f)) *
-					 glm::translate(glm::vec3(5.0f, 0.0f, 0.0f));
+	//this->sunTrans = glm::rotate(angle, glm::vec3(0.0f, 1.0f, 0.0f)) *
+	//				 glm::translate(glm::vec3(5.0f, 0.0f, 0.0f));
 
-	// Set the modeling transformation
-	sphere.setLocalTransformation(sunTrans);
+	//// Set the modeling transformation
+	//sphere.setLocalTransformation(sunTrans);
 
-	this->earthTrans = glm::rotate(1.5f *angle, glm::vec3(0.0f, 1.0f, 0.0f)) *
-		glm::translate(glm::vec3(3.0f, 0.0f, 0.0f));
+	//this->earthTrans = glm::rotate(1.5f *angle, glm::vec3(0.0f, 1.0f, 0.0f)) *
+	//	glm::translate(glm::vec3(3.0f, 0.0f, 0.0f));
 
-	earth.setLocalTransformation(earthTrans);
+	//earth.setLocalTransformation(earthTrans);
 
-	this->moonTrans = glm::rotate(2.0f * angle, glm::vec3(0.0f, 1.0f, 0.0f)) *
-		glm::translate(glm::vec3(1.0f, 0.0f, 0.0f));
+	//this->moonTrans = glm::rotate(2.0f * angle, glm::vec3(0.0f, 1.0f, 0.0f)) *
+	//	glm::translate(glm::vec3(1.0f, 0.0f, 0.0f));
 
-	moon.setLocalTransformation(moonTrans);
+	//moon.setLocalTransformation(moonTrans);
 
-	glm::mat4 blueManTrans = glm::translate(glm::vec3(0.0f, -1.0f, 0.0f)) *
-							 glm::rotate(-0.75f * angle, glm::vec3(0.0f, 1.0f, 0.0f)) *
-							 glm::scale(glm::vec3(0.2f, 0.2f, 0.2f));
+	//glm::mat4 blueManTrans = glm::translate(glm::vec3(0.0f, -1.0f, 0.0f)) *
+	//						 glm::rotate(-0.75f * angle, glm::vec3(0.0f, 1.0f, 0.0f)) *
+	//						 glm::scale(glm::vec3(0.2f, 0.2f, 0.2f));
 
-	model.setLocalTransformation(blueManTrans);
+	//model.setLocalTransformation(blueManTrans);
 
 	return true;// VisibleObject::update(deltaTime);
 }
@@ -237,19 +247,15 @@ void MyScene::selectShader(int shaderProgramNumber)
 	switch (shaderProgramNumber)
 	{
 	case 0:
-		sphere.setShader(perPixelShaderProgram);
-		cube.setShader(perPixelShaderProgram);
-		earth.setShader(perPixelShaderProgram);
-		moon.setShader(perPixelShaderProgram);
-		//model.setShader(perPixelShaderProgram);
+		for (VisibleObject* child : children) {
+			child->setShader(perPixelShaderProgram);
+		}
 		cout << "per pixel" << endl;
 		break;
 	case 1:
-		sphere.setShader(shaderProgram);
-		cube.setShader(shaderProgram);
-		earth.setShader(shaderProgram);
-		moon.setShader(shaderProgram);
-		//model.setShader(shaderProgram);
+		for (VisibleObject* child : children) {
+			child->setShader(shaderProgram);
+		}
 		cout << "per vertex" << endl;
 		break;
 	default:
@@ -264,27 +270,21 @@ void MyScene::setTextureMode(int mode)
 	switch (mode)
 	{
 	case 0:
-		sphere.material.setTextureMapped(NO_TEXTURE);
-		cube.material.setTextureMapped(NO_TEXTURE);
-		earth.material.setTextureMapped(NO_TEXTURE);
-		moon.material.setTextureMapped(NO_TEXTURE);
-		model.material.setTextureMapped(NO_TEXTURE);
+		for (VisibleObject* child : children) {
+			child->material.setTextureMapped(NO_TEXTURE);
+		}
 		cout << "No Texture" << endl;
 		break;
 	case 1:
-		sphere.material.setTextureMapped(DECAL);
-		cube.material.setTextureMapped(DECAL);
-		earth.material.setTextureMapped(DECAL);
-		moon.material.setTextureMapped(DECAL);
-		model.material.setTextureMapped(DECAL);
+		for (VisibleObject* child : children) {
+			child->material.setTextureMapped(DECAL);
+		}
 		cout << "Decal" << endl;
 		break;
 	case 2:
-		sphere.material.setTextureMapped(REPLACE_AMBIENT_DIFFUSE);
-		cube.material.setTextureMapped(REPLACE_AMBIENT_DIFFUSE);
-		earth.material.setTextureMapped(REPLACE_AMBIENT_DIFFUSE);
-		moon.material.setTextureMapped(REPLACE_AMBIENT_DIFFUSE);
-		model.material.setTextureMapped(REPLACE_AMBIENT_DIFFUSE);
+		for (VisibleObject* child : children) {
+			child->material.setTextureMapped(REPLACE_AMBIENT_DIFFUSE);
+		}
 		cout << "Replace ambient and diffuse" << endl;
 		break;
 
@@ -294,7 +294,3 @@ void MyScene::setTextureMode(int mode)
 	}
 
 }
-
-
-
-
