@@ -12,6 +12,12 @@ VisibleObject::~VisibleObject()
 	cout << "VisibleObject::~VisibleObject" << endl;
 	// glDeleteShader(shaderProgram); // ???? Why would you not want to do this?
 
+	for (VisibleObject* obj : children) {
+		delete obj;
+	}
+
+	children.clear();
+
 	glDeleteVertexArrays(1, &vertexArrayObject);
 	
 
