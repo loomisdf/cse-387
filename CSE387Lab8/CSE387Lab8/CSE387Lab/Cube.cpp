@@ -110,11 +110,3 @@ void Cube::initialize()
 	v.clear();
 	
 }
-
-bool Cube::update(float deltaTime)
-{
-	cout << "Cube::update: " << this << endl;
-
-	return VisibleObject::update(deltaTime);
-}
-

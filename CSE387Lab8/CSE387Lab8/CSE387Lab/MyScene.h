@@ -16,7 +16,7 @@ public:
 
 	virtual void initialize();
 
-	virtual bool update(float deltaTime);
+	//virtual bool update(float deltaTime);
 
 	void resize(int windowWidth, int windowHeight);
 

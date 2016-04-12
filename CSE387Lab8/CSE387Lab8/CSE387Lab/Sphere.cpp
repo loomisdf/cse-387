@@ -184,14 +184,3 @@ void Sphere::initializeSphereBottom()
 	}
 
 } // end initializeSphereBottom
-
-
-bool Sphere::update(float deltaTime)
-{
-	cout << "Sphere::update: " << this << endl;
-
-	return VisibleObject::update(deltaTime);
-}
-
-
-

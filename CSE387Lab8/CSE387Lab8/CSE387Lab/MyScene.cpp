@@ -101,6 +101,7 @@ void MyScene::initialize()
 	model->setShader(modelShaderProgram);
 	model->material.setTextureMapped(REPLACE_AMBIENT_DIFFUSE);
 	model->material.setSpecularExponentMat(16.0f);
+	model->addBehavior(new Behavior());
 
 	addChild(model);
 
@@ -184,12 +185,12 @@ void MyScene::resize(int windowWidth, int windowHeight)
 }
 
 
-bool MyScene::update(float deltaTime)
-{
-	const float rotationRate = 1.0f;
-	static float angle = 0.0f;
-
-	angle += (rotationRate * deltaTime);
+//bool MyScene::update(float deltaTime)
+//{
+//	const float rotationRate = 1.0f;
+//	static float angle = 0.0f;
+//
+//	angle += (rotationRate * deltaTime);
 
 	//cube.setLocalTransformation(glm::translate(glm::vec3(0.0f, -1.5f, 0.0f)));
 
@@ -215,8 +216,8 @@ bool MyScene::update(float deltaTime)
 
 	//model.setLocalTransformation(blueManTrans);
 
-	return true;// VisibleObject::update(deltaTime);
-}
+//	return VisibleObject::update(deltaTime);
+//}
 
 void MyScene::toggleLights(int light)
 {

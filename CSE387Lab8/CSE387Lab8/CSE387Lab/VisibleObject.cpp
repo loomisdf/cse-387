@@ -72,6 +72,10 @@ void VisibleObject::draw()
 
 bool VisibleObject::update(float deltaTime)
 {
+	for (Behavior* behavior : behaviors) {
+		behavior->update(deltaTime);
+	}
+
 	size_t i = 0;
 
 	while (i < children.size()) {
