@@ -242,10 +242,12 @@ void MyScene::toggleLights(int light)
 void MyScene::detachMoon() {
 	static bool moonDetached = false;
 	if (moonDetached) {
-		earth.reparent(&moon);
+		cout << "attaching moon" << endl;
+		earth.addChild(&moon);
 		moonDetached = false;
 	}
 	else {
+		cout << "Detaching moon" << endl;
 		moon.detachFromParent();
 		moonDetached = true;
 	}
