@@ -79,3 +79,7 @@ VisibleObject* VisibleObject::detachFromParent() {
 	}
 	return NULL;
 }
+
+void VisibleObject::reparent(VisibleObject* newChild) {
+
+}
