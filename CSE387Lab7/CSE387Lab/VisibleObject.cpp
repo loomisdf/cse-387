@@ -70,9 +70,9 @@ bool VisibleObject::update(float deltatime) {
 }
 
 VisibleObject* VisibleObject::detachFromParent() {
-	for (unsigned int i = 0; i < children.size(); i++) {
-		if (children[i] == this) {
-			children.erase(children.begin() + i);
+	for (unsigned int i = 0; i < parent->children.size(); i++) {
+		if (parent->children[i] == this) {
+			parent->children.erase(parent->children.begin() + i);
 			this->parent = NULL;
 			return this;
 		}
@@ -92,7 +92,8 @@ bool VisibleObject::detachAndDeleteChild(VisibleObject* child) {
 }
 
 void VisibleObject::reparent(VisibleObject* newChild) {
-	
+	newChild->detachFromParent();
 	//newChild->parent = this;
 	newChild->localTransformation = glm::inverse(getParentWorldTransform()) * newChild->getLocalTransformation();
+	this->addChild(newChild);
 }
