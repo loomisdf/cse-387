@@ -81,5 +81,5 @@ VisibleObject* VisibleObject::detachFromParent() {
 }
 
 void VisibleObject::reparent(VisibleObject* newChild) {
-
+	//glm::inverse(getParentWorldtransformation) * localTransformation
 }
