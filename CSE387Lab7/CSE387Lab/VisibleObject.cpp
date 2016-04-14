@@ -63,7 +63,6 @@ bool VisibleObject::update(float deltatime) {
 		if (!children[i]->update(deltatime)) {
 			delete children[i];
 			children.erase(children.begin() + i);
-			return this;
 		}
 	}
 	return true;
@@ -93,7 +92,6 @@ bool VisibleObject::detachAndDeleteChild(VisibleObject* child) {
 
 void VisibleObject::reparent(VisibleObject* newChild) {
 	newChild->detachFromParent();
-	//newChild->parent = this;
 	newChild->localTransformation = glm::inverse(getParentWorldTransform()) * newChild->getLocalTransformation();
 	this->addChild(newChild);
 }
