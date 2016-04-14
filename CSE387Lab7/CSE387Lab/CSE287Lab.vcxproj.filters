@@ -134,5 +134,8 @@
     <Image Include="sun.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="preview_eris_fictional.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

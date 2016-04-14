@@ -91,7 +91,8 @@ bool VisibleObject::detachAndDeleteChild(VisibleObject* child) {
 }
 
 void VisibleObject::reparent(VisibleObject* newChild) {
+	glm::mat4 oldWorldTransform = newChild->getWorldTransformation();
 	newChild->detachFromParent();
-	newChild->localTransformation = glm::inverse(getParentWorldTransform()) * newChild->getLocalTransformation();
+	newChild->localTransformation = glm::inverse(this->getWorldTransformation()) * oldWorldTransform;
 	this->addChild(newChild);
 }

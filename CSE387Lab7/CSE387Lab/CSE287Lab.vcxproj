@@ -125,6 +125,7 @@
     <Image Include="BRICK.BMP" />
     <Image Include="earth.bmp" />
     <Image Include="moon.bmp" />
+    <Image Include="preview_eris_fictional.bmp" />
     <Image Include="sun.bmp" />
     <Image Include="test.bmp" />
     <Image Include="wood1-Sphere1.bmp" />

@@ -94,6 +94,9 @@ static void KeyboardCB(unsigned char key, int x, int y)
 	case('m') :
 		scene.detachMoon();
 		break;
+	case('l') :
+		scene.reparentNewPlanet();
+		break;
 	default:
 		cout << key << " key pressed." << endl;
 	}

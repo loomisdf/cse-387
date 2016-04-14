@@ -75,10 +75,11 @@ void MyScene::initialize()
 
 	//cube.initialize();
 	cube.material.setAmbientAndDiffuseMat(glm::vec4(0.1f, 0.1f, 1.0f, 1.0f));
-	//addChild(&cube);
+	cube.material.setupTexture("Brick.bmp", DECAL);
+	addChild(&cube);
 
 	newPlanet.material.setAmbientAndDiffuseMat(glm::vec4(0.1f, 0.1f, 1.0f, 1.0f));
-	newPlanet.material.setupTexture("Brick.bmp", DECAL);
+	newPlanet.material.setupTexture("preview_eris_fictional.bmp", DECAL);
 	newPlanet.setLocalTransformation(glm::translate(glm::vec3(1.0, 0.0, 0.0)));
 	addChild(&newPlanet);
 
@@ -244,7 +245,15 @@ void MyScene::toggleLights(int light)
 }
 
 void MyScene::reparentNewPlanet() {
-	sphere.reparent(&newPlanet);
+	static bool onSun = false;
+	if (onSun) {
+		this->reparent(&newPlanet);
+		onSun = false;
+	}
+	else {
+		sphere.reparent(&newPlanet);
+		onSun = true;
+	}
 }
 
 void MyScene::detachMoon() {
@@ -299,6 +308,7 @@ void MyScene::setTextureMode(int mode)
 		cube.material.setTextureMapped(NO_TEXTURE);
 		earth.material.setTextureMapped(NO_TEXTURE);
 		moon.material.setTextureMapped(NO_TEXTURE);
+		newPlanet.material.setTextureMapped(NO_TEXTURE);
 		cout << "No Texture" << endl;
 		break;
 	case 1:
@@ -306,6 +316,7 @@ void MyScene::setTextureMode(int mode)
 		cube.material.setTextureMapped(DECAL);
 		earth.material.setTextureMapped(DECAL);
 		moon.material.setTextureMapped(DECAL);
+		newPlanet.material.setTextureMapped(DECAL);
 		cout << "Decal" << endl;
 		break;
 	case 2:
@@ -313,6 +324,7 @@ void MyScene::setTextureMode(int mode)
 		cube.material.setTextureMapped(REPLACE_AMBIENT_DIFFUSE);
 		earth.material.setTextureMapped(REPLACE_AMBIENT_DIFFUSE);
 		moon.material.setTextureMapped(REPLACE_AMBIENT_DIFFUSE);
+		newPlanet.material.setTextureMapped(REPLACE_AMBIENT_DIFFUSE);
 		cout << "Replace ambient and diffuse" << endl;
 		break;
 
