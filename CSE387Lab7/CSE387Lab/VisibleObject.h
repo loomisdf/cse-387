@@ -25,18 +25,33 @@ public:
 
 	virtual bool update(float deltaTime); 
 
+	/*
+		Adds a child to the children array
+	*/
 	void addChild(VisibleObject* visibleObject);
 
 	VisibleObject* detachFromParent();
 
 	bool detachAndDeleteChild(VisibleObject* child);
 
+	/*
+		Gets the world transformation of the parent to this object
+	*/
 	glm::mat4 getParentWorldTransform();
 
+	/*
+		Gets the local transformation of the object
+	*/
 	glm::mat4 getLocalTransformation();
 
+	/*
+		Gets the world transformation of the object
+	*/
 	glm::mat4 getWorldTransformation();
 
+	/*
+		Takes another object and makes it the parent of another object, while keeping the new childs world transformation
+	*/
 	void reparent(VisibleObject* newChild);
 	
 	// Material properties of the object (public so that is can be adjusted
