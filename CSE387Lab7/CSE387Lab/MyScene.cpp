@@ -2,7 +2,7 @@
 
 
 MyScene::MyScene()
-:sphere(1, 64, 64), earth(0.5), moon(0.25), model("model/nanosuit.obj")
+	:sphere(1, 64, 64), earth(0.5), moon(0.25), model("model/nanosuit.obj"), newPlanet(0.5)
 {
 	cout << "Scene Constructor Called." << endl;
 }
@@ -75,8 +75,12 @@ void MyScene::initialize()
 
 	//cube.initialize();
 	cube.material.setAmbientAndDiffuseMat(glm::vec4(0.1f, 0.1f, 1.0f, 1.0f));
-	cube.material.setupTexture("Brick.bmp", DECAL);
-	addChild(&cube);
+	//addChild(&cube);
+
+	newPlanet.material.setAmbientAndDiffuseMat(glm::vec4(0.1f, 0.1f, 1.0f, 1.0f));
+	newPlanet.material.setupTexture("Brick.bmp", DECAL);
+	newPlanet.setLocalTransformation(glm::translate(glm::vec3(1.0, 0.0, 0.0)));
+	addChild(&newPlanet);
 
 	//sphere.initialize();
 	sphere.material.setAmbientAndDiffuseMat(glm::vec4(1.0f, 1.1f, 0.1f, 1.0f));
@@ -239,6 +243,10 @@ void MyScene::toggleLights(int light)
 
 }
 
+void MyScene::reparentNewPlanet() {
+	sphere.reparent(&newPlanet);
+}
+
 void MyScene::detachMoon() {
 	static bool moonDetached = false;
 	if (moonDetached) {
@@ -262,6 +270,7 @@ void MyScene::selectShader(int shaderProgramNumber)
 		cube.setShader(perPixelShaderProgram);
 		earth.setShader(perPixelShaderProgram);
 		moon.setShader(perPixelShaderProgram);
+		newPlanet.setShader(perPixelShaderProgram);
 		//model.setShader(perPixelShaderProgram);
 		cout << "per pixel" << endl;
 		break;
@@ -270,6 +279,7 @@ void MyScene::selectShader(int shaderProgramNumber)
 		cube.setShader(shaderProgram);
 		earth.setShader(shaderProgram);
 		moon.setShader(shaderProgram);
+		newPlanet.setShader(shaderProgram);
 		//model.setShader(shaderProgram);
 		cout << "per vertex" << endl;
 		break;

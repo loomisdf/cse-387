@@ -28,11 +28,15 @@ public:
 
 	void detachMoon();
 
+	void reparentNewPlanet();
+
 protected:
 
 	GLuint perPixelShaderProgram;
 
 	Cube cube;
+
+	Sphere newPlanet;
 
 	Sphere sphere;
 	glm::mat4 sunTrans;
