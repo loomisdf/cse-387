@@ -327,7 +327,7 @@ void AssimpModel::draw()
 	glUseProgram(shaderProgram);
 
 	// Set the modeling transformation
-	SharedProjectionAndViewing::setModelingMatrix(getWorldTransformation());
+	SharedProjectionAndViewing::setModelingMatrix(getWorldTransformation() * scale);
 
 	// Set the material properties and bind the texture object
 	SharedMaterialProperties::setShaderMaterialProperties(shaderProgram, material);

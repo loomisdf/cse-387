@@ -1,7 +1,7 @@
 #include "VisibleObject.h"
 
 VisibleObject::VisibleObject()
-:parent(NULL), numberOfIndices(0), localTransformation(glm::mat4(1.0f))
+:parent(NULL), numberOfIndices(0), localTransformation(glm::mat4(1.0f)), scale(glm::mat4(1.0f))
 {
 
 }
@@ -19,7 +19,8 @@ VisibleObject::~VisibleObject()
 	children.clear();
 
 	glDeleteVertexArrays(1, &vertexArrayObject);
-	
+
+	glDeleteBuffers(1, &VBO);
 
 };
 

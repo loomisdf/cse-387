@@ -28,7 +28,7 @@ Sphere::~Sphere()
 
 void Sphere::initialize()
 {
-	GLuint VBO, IBO; // Identifiers for buffer objects
+	GLuint IBO; // Identifiers for buffer objects
 
 	stackStep = 2.0f * M_PI / (stacks*2.0f);
 	sliceStep = 2.0f * M_PI / -slices;

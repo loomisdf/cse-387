@@ -94,6 +94,7 @@
     <ClInclude Include="SharedMaterialProperties.h" />
     <ClInclude Include="SharedProjectionAndViewing.h" />
     <ClInclude Include="Sphere.h" />
+    <ClInclude Include="SpinBehavior.h" />
     <ClInclude Include="VisibleObject.h" />
     <ClInclude Include="VisibleObjectOrderedRender.h" />
     <ClInclude Include="VisbleObjectIndexedRender.h" />
@@ -112,6 +113,7 @@
     <ClCompile Include="SharedMaterialProperties.cpp" />
     <ClCompile Include="SharedProjectionAndViewing.cpp" />
     <ClCompile Include="Sphere.cpp" />
+    <ClCompile Include="SpinBehavior.cpp" />
     <ClCompile Include="VisibleObject.cpp" />
     <ClCompile Include="VisibleObjectOrderedRender.cpp" />
     <ClCompile Include="VisbleObjectIndexedRender.cpp" />

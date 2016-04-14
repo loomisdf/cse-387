@@ -101,7 +101,18 @@ void MyScene::initialize()
 	model->setShader(modelShaderProgram);
 	model->material.setTextureMapped(REPLACE_AMBIENT_DIFFUSE);
 	model->material.setSpecularExponentMat(16.0f);
+
+
+	//glm::translate(glm::vec3(0.0f, -1.0f, 0.0f)) *
+	//							 glm::rotate(-0.75f * angle, glm::vec3(0.0f, 1.0f, 0.0f)) *
+	//							 glm::scale(glm::vec3(0.2f, 0.2f, 0.2f));
 	model->addBehavior(new Behavior());
+
+	model->scale = glm::scale(glm::vec3(0.2f, 0.2f, 0.2f));
+
+	model->addBehavior(new SpinBehavior(glm::vec3(0.0f, -1.0f, 0.0f),
+										glm::vec3(0.0f, 1.0f, 0.0f),
+										glm::radians(30.0f)));
 
 	addChild(model);
 

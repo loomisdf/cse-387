@@ -51,11 +51,15 @@ public:
 	// outside the class)
 	Material material;
 
+	glm::mat4 scale;
+
 protected: 
 
 	GLuint shaderProgram;
 
 	GLuint vertexArrayObject;
+
+	GLuint VBO;
 
 	int numberOfIndices;
 

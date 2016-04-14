@@ -6,6 +6,7 @@
 #include "Cube.h"
 #include "Sphere.h"
 #include "AssimpModel.h"
+#include "SpinBehavior.h"
 
 class MyScene : public VisibleObject
 {
