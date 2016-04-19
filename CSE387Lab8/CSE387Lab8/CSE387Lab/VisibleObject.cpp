@@ -125,3 +125,10 @@ Behavior* VisibleObject::removeBehavior(Behavior* behavior)
 	return NULL; // Behaviors was not found
 
 } // end removeBehavior
+
+void VisibleObject::reparent(VisibleObject* newChild) {
+	glm::mat4 oldWorldTransform = newChild->getWorldTransformation();
+	newChild->detachFromParent();
+	newChild->localTransformation = glm::inverse(this->getWorldTransformation()) * oldWorldTransform;
+	this->addChild(newChild);
+}

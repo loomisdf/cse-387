@@ -245,12 +245,12 @@ Model::MeshEntry::MeshEntry(aiMesh *mesh, const aiScene* scene , const string di
 			meshMaterial.setEmissiveMat(glm::vec4(matColor[0], matColor[1], matColor[2], 1.0));
 		}
 
-		float shininess;
+		//float shininess;
 
-		if (material->Get(AI_MATKEY_SHININESS, shininess) == AI_SUCCESS) {
+		//if (material->Get(AI_MATKEY_SHININESS, shininess) == AI_SUCCESS) {
 
-			meshMaterial.setSpecularExponentMat(shininess);
-		}
+		//	meshMaterial.setSpecularExponentMat(shininess);
+		//}
 
 		if (mesh->HasTextureCoords(0)) {
 

@@ -76,11 +76,19 @@ void MyScene::initialize()
 	moon->material.setupTexture("moon.bmp", REPLACE_AMBIENT_DIFFUSE);
 //	earth->addChild(moon);
 
-	Model* model = new Model("Space/dark_fighter_6.obj");
+	//Model* model = new Model("Space/dark_fighter_6.obj");
+	Model* model = new Model("Space/millenium-falcon/millenium-falcon.obj");
+
+	VisibleObject* empty = new VisibleObject();
+	empty->setLocalTransformation(glm::rotate(glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f)));
+
+	addChild(empty);
 
 	model->material.setTextureMode(REPLACE_AMBIENT_DIFFUSE);
+	model->scale = glm::scale(glm::vec3(0.1f, 0.1f, 0.1f));
+
 //	model->scaleMatrix = glm::scale(glm::vec3(0.1f, 0.1f, 0.1f));
-	addChild(model);
+	empty->addChild(model);
 
 	model->addBehavior(new SpinBehavior(glm::vec3(0.0f, -1.0f, 0.0f),
 		glm::vec3(0.0f, 1.0f, 0.0f),
