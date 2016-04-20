@@ -7,6 +7,7 @@
 #include "Sphere.h"
 #include "AssimpModel.h"
 #include "SpinBehavior.h"
+#include "OrbitBehavior.h"
 
 class MyScene : public VisibleObject
 {

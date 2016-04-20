@@ -73,26 +73,32 @@ void MyScene::initialize()
 	//cube->initialize();
 	cube->material.setAmbientAndDiffuseMat(glm::vec4(0.1f, 0.1f, 1.0f, 1.0f));
 	cube->material.setupTexture("Brick.bmp", DECAL);
-	addChild(cube);
+	//addChild(cube);
 
-	Sphere* sphere = new Sphere(1, 64, 64);
+	Sphere* sun = new Sphere(1, 64, 64);
 
 	//sphere->initialize();
-	sphere->material.setAmbientAndDiffuseMat(glm::vec4(1.0f, 1.0f, 0.1f, 1.0f));
-	sphere->material.setupTexture("preview_sun.jpg", REPLACE_AMBIENT_DIFFUSE);
-	addChild(sphere);
+	sun->material.setAmbientAndDiffuseMat(glm::vec4(1.0f, 1.0f, 0.1f, 1.0f));
+	sun->material.setupTexture("preview_sun.jpg", REPLACE_AMBIENT_DIFFUSE);
+	sun->addBehavior(new Behavior());
+	sun->addBehavior(new OrbitBehavior(glm::vec3(0.0f, 1.0f, 0.0f), 2.0f, 1.0f));
+	addChild(sun);
 
 	Sphere* earth = new Sphere(0.5);
 
 	//earth->initialize();
 	earth->material.setAmbientAndDiffuseMat(glm::vec4(0.0f, 0.5f, 0.0f, 1.0f));
 	earth->material.setupTexture("earth.bmp", REPLACE_AMBIENT_DIFFUSE);
-	sphere->addChild(earth);
+	earth->addBehavior(new Behavior());
+	earth->addBehavior(new OrbitBehavior(glm::vec3(0.0f, 1.0f, 0.0f), 2.5f, 1.5f));
+	sun->addChild(earth);
 
 	Sphere* moon = new Sphere(0.25);
 
 	//moon->initialize();
 	moon->material.setupTexture("moon.bmp", REPLACE_AMBIENT_DIFFUSE);
+	moon->addBehavior(new Behavior());
+	moon->addBehavior(new OrbitBehavior(glm::vec3(0.0f, 1.0f, 0.0f), 1.0f, 2.0f));
 	earth->addChild(moon);
 
 	//Model ===================================================
@@ -105,9 +111,7 @@ void MyScene::initialize()
 
 
 	model->addBehavior(new Behavior());
-
 	model->scale = glm::scale(glm::vec3(0.2f, 0.2f, 0.2f));
-
 	model->addBehavior(new SpinBehavior(glm::vec3(0.0f, -1.0f, 0.0f),
 										glm::vec3(0.0f, 1.0f, 0.0f),
 										glm::radians(30.0f)));

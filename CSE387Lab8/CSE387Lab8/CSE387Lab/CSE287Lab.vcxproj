@@ -90,6 +90,7 @@
     <ClInclude Include="BuildShader.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MyScene.h" />
+    <ClInclude Include="OrbitBehavior.h" />
     <ClInclude Include="SharedGeneralLighting.h" />
     <ClInclude Include="SharedMaterialProperties.h" />
     <ClInclude Include="SharedProjectionAndViewing.h" />
@@ -109,6 +110,7 @@
     <ClCompile Include="BuildShader.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MyScene.cpp" />
+    <ClCompile Include="OrbitBehavior.cpp" />
     <ClCompile Include="SharedGeneralLighting.cpp" />
     <ClCompile Include="SharedMaterialProperties.cpp" />
     <ClCompile Include="SharedProjectionAndViewing.cpp" />
