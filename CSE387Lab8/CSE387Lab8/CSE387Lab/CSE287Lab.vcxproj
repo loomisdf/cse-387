@@ -99,6 +99,7 @@
     <ClInclude Include="VisibleObject.h" />
     <ClInclude Include="VisibleObjectOrderedRender.h" />
     <ClInclude Include="VisbleObjectIndexedRender.h" />
+    <ClInclude Include="WaypointBehavior.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssimpModel.cpp" />
@@ -119,6 +120,7 @@
     <ClCompile Include="VisibleObject.cpp" />
     <ClCompile Include="VisibleObjectOrderedRender.cpp" />
     <ClCompile Include="VisbleObjectIndexedRender.cpp" />
+    <ClCompile Include="WaypointBehavior.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="fragmentShader.fs.glsl" />
