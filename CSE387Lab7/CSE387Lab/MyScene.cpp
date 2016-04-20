@@ -71,9 +71,8 @@ void MyScene::initialize()
 	SharedMaterialProperties::setUniformBlockForShader(shaderProgram);
 	SharedGeneralLighting::setUniformBlockForShader(shaderProgram);
 
-	
 
-	//cube.initialize();
+	//cube
 	cube.material.setAmbientAndDiffuseMat(glm::vec4(0.1f, 0.1f, 1.0f, 1.0f));
 	cube.material.setupTexture("Brick.bmp", DECAL);
 	addChild(&cube);
@@ -83,21 +82,21 @@ void MyScene::initialize()
 	newPlanet.setLocalTransformation(glm::translate(glm::vec3(1.0, 0.0, 0.0)));
 	addChild(&newPlanet);
 
-	//sphere.initialize();
+	//sphere
 	sphere.material.setAmbientAndDiffuseMat(glm::vec4(1.0f, 1.1f, 0.1f, 1.0f));
 	sphere.material.setupTexture("sun.bmp", REPLACE_AMBIENT_DIFFUSE);
 	addChild(&sphere);
 
-	//earth.initialize();
+	//earth
 	earth.material.setAmbientAndDiffuseMat(glm::vec4(0.0f, 0.5f, 0.0f, 1.0f));
 	earth.material.setupTexture("earth.bmp", REPLACE_AMBIENT_DIFFUSE);
 	sphere.addChild(&earth);
 
-	//moon.initialize();
+	//moon
 	moon.material.setupTexture("moon.bmp", REPLACE_AMBIENT_DIFFUSE);
 	earth.addChild(&moon);
 
-	//model.initialize();
+	//model
 	model.setShader(modelShaderProgram);
 
 	addChild(&model);
