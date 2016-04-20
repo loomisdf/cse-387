@@ -48,16 +48,12 @@ glm::mat4 VisibleObject::getParentWorldTransform()
 
 glm::mat4 VisibleObject::getLocalTransformation()
 {
-
 	return localTransformation;
-
 }
 
 glm::mat4 VisibleObject::getWorldTransformation() // Modeling trans
 {
-
 	return getParentWorldTransform() * localTransformation;
-
 }
 
 void VisibleObject::draw()
@@ -69,6 +65,13 @@ void VisibleObject::draw()
 
 	checkOpenGLErrors("VisibleObject::draw");
 }
+
+void VisibleObject::initialize() {
+	for (unsigned int i = 0; i < children.size(); i++) {
+		children[i]->initialize();
+	}
+}
+
 
 
 bool VisibleObject::update(float deltaTime)
@@ -125,6 +128,28 @@ Behavior* VisibleObject::removeBehavior(Behavior* behavior)
 	return NULL; // Behaviors was not found
 
 } // end removeBehavior
+
+VisibleObject* VisibleObject::detachFromParent() {
+	for (unsigned int i = 0; i < parent->children.size(); i++) {
+		if (parent->children[i] == this) {
+			parent->children.erase(parent->children.begin() + i);
+			this->parent = NULL;
+			return this;
+		}
+	}
+	return NULL;
+}
+
+bool VisibleObject::detachAndDeleteChild(VisibleObject* child) {
+	for (unsigned int i = 0; i < children.size(); i++) {
+		if (children[i] == child) {
+			children.erase(children.begin() + i);
+			delete children[i];
+			return true;
+		}
+	}
+	return false;
+}
 
 void VisibleObject::reparent(VisibleObject* newChild) {
 	glm::mat4 oldWorldTransform = newChild->getWorldTransformation();

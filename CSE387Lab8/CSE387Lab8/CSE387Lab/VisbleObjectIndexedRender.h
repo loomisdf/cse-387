@@ -8,5 +8,7 @@ public:
 	~VisbleObjectIndexedRender();
 
 	virtual void draw();
+
+	GLuint IBO;
 };
 

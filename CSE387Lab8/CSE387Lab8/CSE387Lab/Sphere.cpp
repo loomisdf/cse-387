@@ -28,7 +28,7 @@ Sphere::~Sphere()
 
 void Sphere::initialize()
 {
-	GLuint IBO; // Identifiers for buffer objects
+	//GLuint IBO; // Identifiers for buffer objects
 
 	stackStep = 2.0f * M_PI / (stacks*2.0f);
 	sliceStep = 2.0f * M_PI / -slices;
@@ -72,6 +72,8 @@ void Sphere::initialize()
 	// Now that vertex data and indices are buffered, these are no longer needed.
 	v.clear();
 	indices.clear();
+
+	VisibleObject::initialize();
 
 } // end initialize
 
@@ -184,3 +186,8 @@ void Sphere::initializeSphereBottom()
 	}
 
 } // end initializeSphereBottom
+
+bool Sphere::update(float deltatime) {
+	VisibleObject::update(deltatime);
+	return true;
+}

@@ -70,42 +70,40 @@ void MyScene::initialize()
 
 	Cube* cube = new Cube();
 
-	cube->initialize();
+	//cube->initialize();
 	cube->material.setAmbientAndDiffuseMat(glm::vec4(0.1f, 0.1f, 1.0f, 1.0f));
 	cube->material.setupTexture("Brick.bmp", DECAL);
 	addChild(cube);
 
 	Sphere* sphere = new Sphere(1, 64, 64);
 
-	sphere->initialize();
+	//sphere->initialize();
 	sphere->material.setAmbientAndDiffuseMat(glm::vec4(1.0f, 1.0f, 0.1f, 1.0f));
 	sphere->material.setupTexture("preview_sun.jpg", REPLACE_AMBIENT_DIFFUSE);
 	addChild(sphere);
 
 	Sphere* earth = new Sphere(0.5);
 
-	earth->initialize();
+	//earth->initialize();
 	earth->material.setAmbientAndDiffuseMat(glm::vec4(0.0f, 0.5f, 0.0f, 1.0f));
 	earth->material.setupTexture("earth.bmp", REPLACE_AMBIENT_DIFFUSE);
 	sphere->addChild(earth);
 
 	Sphere* moon = new Sphere(0.25);
 
-	moon->initialize();
+	//moon->initialize();
 	moon->material.setupTexture("moon.bmp", REPLACE_AMBIENT_DIFFUSE);
 	earth->addChild(moon);
 
+	//Model ===================================================
 	AssimpModel* model = new AssimpModel("model/nanosuit.obj");
 
-	model->initialize();
+	//model->initialize();
 	model->setShader(modelShaderProgram);
 	model->material.setTextureMapped(REPLACE_AMBIENT_DIFFUSE);
 	model->material.setSpecularExponentMat(16.0f);
 
 
-	//glm::translate(glm::vec3(0.0f, -1.0f, 0.0f)) *
-	//							 glm::rotate(-0.75f * angle, glm::vec3(0.0f, 1.0f, 0.0f)) *
-	//							 glm::scale(glm::vec3(0.2f, 0.2f, 0.2f));
 	model->addBehavior(new Behavior());
 
 	model->scale = glm::scale(glm::vec3(0.2f, 0.2f, 0.2f));
@@ -115,6 +113,7 @@ void MyScene::initialize()
 										glm::radians(30.0f)));
 
 	addChild(model);
+	//=========================================================
 
 	// Initialize the shader for all the obects
 	selectShader(0);
@@ -184,7 +183,8 @@ void MyScene::initialize()
 	SharedGeneralLighting::setEnabled(GL_LIGHT_TWO, light3Enabled);
 
 	checkOpenGLErrors("MyScene::initialize7");
-	
+
+	VisibleObject::initialize();
 }
 
 
@@ -196,8 +196,8 @@ void MyScene::resize(int windowWidth, int windowHeight)
 }
 
 
-//bool MyScene::update(float deltaTime)
-//{
+bool MyScene::update(float deltaTime)
+{
 //	const float rotationRate = 1.0f;
 //	static float angle = 0.0f;
 //
@@ -227,8 +227,8 @@ void MyScene::resize(int windowWidth, int windowHeight)
 
 	//model.setLocalTransformation(blueManTrans);
 
-//	return VisibleObject::update(deltaTime);
-//}
+	return VisibleObject::update(deltaTime);
+}
 
 void MyScene::toggleLights(int light)
 {

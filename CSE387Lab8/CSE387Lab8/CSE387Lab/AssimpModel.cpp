@@ -144,6 +144,8 @@ void AssimpModel::initialize()
 
 	checkOpenGLErrors("AssimpModel::initialize");
 
+	VisibleObject::initialize();
+
 }
 
 

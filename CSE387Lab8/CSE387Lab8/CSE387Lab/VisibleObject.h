@@ -33,6 +33,8 @@ public:
 
 	VisibleObject* detachFromParent();
 
+	bool detachAndDeleteChild(VisibleObject* child);
+
 	glm::mat4 getParentWorldTransform();
 
 	glm::mat4 getLocalTransformation();

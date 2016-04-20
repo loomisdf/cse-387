@@ -8,6 +8,7 @@ VisibleObjectOrderedRender::VisibleObjectOrderedRender()
 
 VisibleObjectOrderedRender::~VisibleObjectOrderedRender()
 {
+	glDeleteBuffers(1, &VBO);
 }
 
 void VisibleObjectOrderedRender::draw()

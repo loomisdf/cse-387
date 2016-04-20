@@ -8,6 +8,7 @@ VisbleObjectIndexedRender::VisbleObjectIndexedRender()
 
 VisbleObjectIndexedRender::~VisbleObjectIndexedRender()
 {
+	glDeleteBuffers(1, &IBO);
 }
 
 void VisbleObjectIndexedRender::draw()
