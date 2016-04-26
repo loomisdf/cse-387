@@ -73,7 +73,12 @@ void MyScene::initialize()
 	//cube->initialize();
 	cube->material.setAmbientAndDiffuseMat(glm::vec4(0.1f, 0.1f, 1.0f, 1.0f));
 	cube->material.setupTexture("Brick.bmp", DECAL);
-	//addChild(cube);
+	//cube->addBehavior(new Behavior());
+	//vector<glm::vec3> points;
+	//points.push_back(glm::vec3(0.0f, 0.0f, 0.0f));
+	//points.push_back(glm::vec3(0.0f, 0.0f, 5.0f));
+	//cube->addBehavior(new WaypointBehavior(points));
+	addChild(cube);
 
 	Sphere* sun = new Sphere(1, 64, 64);
 
@@ -107,7 +112,7 @@ void MyScene::initialize()
 	//model->initialize();
 	model->setShader(modelShaderProgram);
 	model->material.setTextureMapped(REPLACE_AMBIENT_DIFFUSE);
-	model->material.setSpecularExponentMat(16.0f);
+	//model->material.setSpecularExponentMat(16.0f);
 
 
 	model->addBehavior(new Behavior());
@@ -125,7 +130,7 @@ void MyScene::initialize()
 	checkOpenGLErrors("MyScene::initialize3");
 
 	// Viewing transformation
-	glm::mat4  viewingTransformation = glm::lookAt(glm::vec3(0.0f, 0.0f, -10.0f),
+	glm::mat4  viewingTransformation = glm::lookAt(glm::vec3(0.0f, 0.0f, 10.0f),
 										glm::vec3(0.0f, 0.0f, 0.0f),
 										glm::vec3(0.0f, 1.0f, 0.0f));
 
@@ -189,6 +194,9 @@ void MyScene::initialize()
 	checkOpenGLErrors("MyScene::initialize7");
 
 	VisibleObject::initialize();
+
+	// Initialize the shader for all the obects
+	selectShader(0);
 }
 
 

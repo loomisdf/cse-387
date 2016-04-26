@@ -34,6 +34,11 @@ static void RenderSceneCB()
 		// Flush all drawing commands and swapbuffers
 		glutSwapBuffers();
 
+		float deltaTime = (float)elapsedTime / 1000;
+		if (deltaTime > 2 / 60.0f) {
+			deltaTime = 1 / 60.0f;
+		}
+
 		scene.update((float)elapsedTime / 1000);
 		// Query OpenGL for errors.
 		checkOpenGLErrors("RenderSceneCB4");

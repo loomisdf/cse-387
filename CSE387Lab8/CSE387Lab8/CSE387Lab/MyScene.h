@@ -8,6 +8,7 @@
 #include "AssimpModel.h"
 #include "SpinBehavior.h"
 #include "OrbitBehavior.h"
+#include "WaypointBehavior.h"
 
 class MyScene : public VisibleObject
 {

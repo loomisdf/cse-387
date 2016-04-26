@@ -4,15 +4,15 @@
 WaypointBehavior::WaypointBehavior(vector<glm::vec3> points, GLfloat speed)
 	:waypoints(points), speed(speed), targetWaypointIndex(0)
 {
+	position = waypoints[0];
+
+	targetWaypointIndex = getNexWaypointIndex();
+	updateVeolcityForNewWaypoint();
 }
 
-
-WaypointBehavior::~WaypointBehavior()
-{
-}
 
 void WaypointBehavior::updateVeolcityForNewWaypoint() {
-
+	velocity = glm::normalize(waypoints[targetWaypointIndex] - position) * speed;
 }
 
 GLfloat WaypointBehavior::distanceToTargetWaypoint() {
@@ -20,22 +20,15 @@ GLfloat WaypointBehavior::distanceToTargetWaypoint() {
 }
 
 int WaypointBehavior::getNexWaypointIndex() {
-	if (targetWaypointIndex + 1 < waypoints.size()) {
-		targetWaypointIndex++;
-		return targetWaypointIndex;
-	}
-	else {
-		targetWaypointIndex = 0;
-		return targetWaypointIndex;
-	}
+	return (targetWaypointIndex + 1) % waypoints.size();
 }
 
 void WaypointBehavior::update(float elapsedTimeSeconds)
 {
 	if (distanceToTargetWaypoint() < (speed * elapsedTimeSeconds)) {
-		position = waypoints[getNexWaypointIndex()];
+		targetWaypointIndex = getNexWaypointIndex();
 		updateVeolcityForNewWaypoint();
 	}
 	position = position + velocity * elapsedTimeSeconds;
-	target->setLocalTransformation(glm::translate(glm::mat4(1.0f), position));
+	target->setLocalTransformation(glm::translate(position));
 } // end update
