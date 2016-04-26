@@ -2,11 +2,10 @@
 
 
 WaypointBehavior::WaypointBehavior(vector<glm::vec3> points, GLfloat speed)
-	:waypoints(points), speed(speed), targetWaypointIndex(0)
+	:waypoints(points), speed(speed)
 {
 	position = waypoints[0];
-
-	targetWaypointIndex = getNexWaypointIndex();
+	targetWaypointIndex = 1;
 	updateVeolcityForNewWaypoint();
 }
 

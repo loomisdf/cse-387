@@ -36,7 +36,7 @@ static void RenderSceneCB()
 
 		float deltaTime = (float)elapsedTime / 1000;
 		if (deltaTime > 2 / 60.0f) {
-			deltaTime = 1 / 60.0f;
+			deltaTime = 0;
 		}
 
 		scene.update((float)elapsedTime / 1000);
@@ -59,7 +59,7 @@ static void RenderSceneCB()
 static void ResizeCB(int width, int height)
 {
 	// Set viewport to entire client area of the window
-	glViewport(0, 0, width, height);
+	//glViewport(0, 0, width, height);
 	
 	// Set the projection matrix based don the window aspect ratio
 	scene.resize(width, height);

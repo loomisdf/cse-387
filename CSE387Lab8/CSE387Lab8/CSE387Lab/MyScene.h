@@ -9,6 +9,7 @@
 #include "SpinBehavior.h"
 #include "OrbitBehavior.h"
 #include "WaypointBehavior.h"
+#include "Camera.h"
 
 class MyScene : public VisibleObject
 {
@@ -28,6 +29,8 @@ public:
 	void selectShader(int shaderProgramNumber);
 
 	void setTextureMode(int mode);
+
+	virtual void draw();
 
 protected:
 

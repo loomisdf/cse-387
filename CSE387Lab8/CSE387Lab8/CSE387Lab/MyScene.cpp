@@ -74,10 +74,14 @@ void MyScene::initialize()
 	cube->material.setAmbientAndDiffuseMat(glm::vec4(0.1f, 0.1f, 1.0f, 1.0f));
 	cube->material.setupTexture("Brick.bmp", DECAL);
 	//cube->addBehavior(new Behavior());
-	//vector<glm::vec3> points;
+	vector<glm::vec3> p;
+	p.push_back(glm::vec3(0.0f, 0.0f, 0.0f));
+	p.push_back(glm::vec3(0.0f, 0.0f, 20.0f));
+	p.push_back(glm::vec3(0.0f, 10.0f, 20.0f));
+	p.push_back(glm::vec3(0.0f, 10.0f, -20.0f));
 	//points.push_back(glm::vec3(0.0f, 0.0f, 0.0f));
 	//points.push_back(glm::vec3(0.0f, 0.0f, 5.0f));
-	//cube->addBehavior(new WaypointBehavior(points));
+	cube->addBehavior(new WaypointBehavior(p, 1));
 	addChild(cube);
 
 	Sphere* sun = new Sphere(1, 64, 64);
@@ -129,13 +133,21 @@ void MyScene::initialize()
 
 	checkOpenGLErrors("MyScene::initialize3");
 
+	Camera* cam1 = new Camera();
+	cam1->setViewPort(0.5, 0, 0.5, 1);
+	cam1->enable(true);
+
+	cam1 = new Camera();
+	cam1->setViewPort(0, 0, 0.5, 1);
+	cam1->enable(true);
+
 	// Viewing transformation
-	glm::mat4  viewingTransformation = glm::lookAt(glm::vec3(0.0f, 0.0f, 10.0f),
-										glm::vec3(0.0f, 0.0f, 0.0f),
-										glm::vec3(0.0f, 1.0f, 0.0f));
+	//glm::mat4  viewingTransformation = glm::lookAt(glm::vec3(0.0f, 0.0f, 30.0f),
+	//									glm::vec3(0.0f, 0.0f, 0.0f),
+	//									glm::vec3(0.0f, 1.0f, 0.0f));
 
 	// Set viewing transformation
-	SharedProjectionAndViewing::setViewMatrix(viewingTransformation);
+	//SharedProjectionAndViewing::setViewMatrix(viewingTransformation);
 
 	checkOpenGLErrors("MyScene::initialize4");
 	// Light 1
@@ -205,6 +217,13 @@ void MyScene::resize(int windowWidth, int windowHeight)
 	glm::mat4 projectionTransformation = glm::perspective(M_PI / 4.0f, (GLfloat)windowWidth / windowHeight, 1.0f, 100.0f);
 
 	SharedProjectionAndViewing::setProjectionMatrix(projectionTransformation);
+}
+
+void MyScene::draw() {
+	for (Camera* cam : Camera::activeCameras) {
+		cam->setViewingTransformation(); // Set the viewing, projection, and viewport transformation
+		VisibleObject::draw();
+	}
 }
 
 
